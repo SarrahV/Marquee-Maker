@@ -7,7 +7,8 @@
       return (
         React.createElement("div", {className: "wrap"}, 
           React.createElement("div", {className: "can metal linear"}, 
-            React.createElement("div", {className: "face"}
+            React.createElement("div", {className: "face"}, 
+              React.createElement(TracksView, null)
             )
           ), 
           React.createElement("div", {className: "pole metalPole linearPole"}
@@ -20,11 +21,18 @@
   views.SignView = SignView;
 
   //all tracks
-  var Tracksview = React.createBackboneClass({
+  var TracksView = React.createBackboneClass({
 
     render: function(){
       return (
-        React.createElement("ul", {className: "tracks"}
+        React.createElement("ul", {className: "tracks"}, 
+          React.createElement("li", null, 
+            React.createElement("span", null, "M"), 
+            React.createElement("span", null, "A"), 
+            React.createElement("span", null, "Y"), 
+            React.createElement("span", null, "B"), 
+            React.createElement("span", null, "E")
+          )
         )
       )
     }

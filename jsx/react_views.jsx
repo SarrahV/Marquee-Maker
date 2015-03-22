@@ -8,6 +8,7 @@
         <div className="wrap"> 
           <div className="can metal linear">
             <div className="face">
+              <TracksView/>
             </div>
           </div>
           <div className="pole metalPole linearPole">
@@ -20,11 +21,18 @@
   views.SignView = SignView;
 
   //all tracks
-  var Tracksview = React.createBackboneClass({
+  var TracksView = React.createBackboneClass({
 
     render: function(){
       return (
         <ul className="tracks">
+          <li>
+            <span>M</span>
+            <span>A</span>
+            <span>Y</span>
+            <span>B</span>
+            <span>E</span>
+          </li>
         </ul>
       )
     }
