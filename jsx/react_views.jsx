@@ -26,13 +26,7 @@
     render: function(){
       return (
         <ul className="tracks">
-          <li>
-            <span>M</span>
-            <span>A</span>
-            <span>Y</span>
-            <span>B</span>
-            <span>E</span>
-          </li>
+          <TrackView/>
         </ul>
       )
     }
@@ -40,6 +34,28 @@
 
   views.TracksView = TracksView;
 
+  // ind track
+  var TrackView = React.createBackboneClass({
+    render: function(){
+      return (
+      <li><LetterView/></li>
+      )
+    }
+  });//end trackview
+
+  views.TrackView = TrackView;
+
+
+  //ind letter
+  var LetterView = React.createBackboneClass({
+    render: function(){
+      return (
+        <span>A</span>
+      )
+    }
+  });// end letterview
+
+  views.LetterView = LetterView
 
 })(signapp.views = {});
 

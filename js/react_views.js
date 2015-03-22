@@ -26,13 +26,7 @@
     render: function(){
       return (
         React.createElement("ul", {className: "tracks"}, 
-          React.createElement("li", null, 
-            React.createElement("span", null, "M"), 
-            React.createElement("span", null, "A"), 
-            React.createElement("span", null, "Y"), 
-            React.createElement("span", null, "B"), 
-            React.createElement("span", null, "E")
-          )
+          React.createElement(TrackView, null)
         )
       )
     }
@@ -40,6 +34,28 @@
 
   views.TracksView = TracksView;
 
+  // ind track
+  var TrackView = React.createBackboneClass({
+    render: function(){
+      return (
+      React.createElement("li", null, React.createElement(LetterView, null))
+      )
+    }
+  });//end trackview
+
+  views.TrackView = TrackView;
+
+
+  //ind letter
+  var LetterView = React.createBackboneClass({
+    render: function(){
+      return (
+        React.createElement("span", null, "A")
+      )
+    }
+  });// end letterview
+
+  views.LetterView = LetterView
 
 })(signapp.views = {});
 
