@@ -29,6 +29,7 @@
       return (
         <ul className="tracks">
           <TrackView/>
+          <TrackView/>
         </ul>
       )
     }

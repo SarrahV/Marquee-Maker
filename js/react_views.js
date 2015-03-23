@@ -82,6 +82,7 @@
     render: function(){
       return (
         React.createElement("ul", {className: "tracks"}, 
+          React.createElement(TrackView, null), 
           React.createElement(TrackView, null)
         )
       )

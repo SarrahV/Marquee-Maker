@@ -1,5 +1,13 @@
 body {
   background: #949494;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background: #55c0ec;
+  height: 25px;
+  margin: 0;
+  padding: 0;
 }
 .wrap {
   /* end can */
