@@ -1,6 +1,7 @@
 (function(views){
 
-  //outer sign and pole
+  //----------------------------------------- outer sign and pole
+
   var SignView = React.createBackboneClass({
 
     render: function(){
@@ -20,7 +21,8 @@
 
   views.SignView = SignView;
 
-  //all tracks
+  //----------------------------------------- all tracks
+
   var TracksView = React.createBackboneClass({
 
     render: function(){
@@ -34,7 +36,8 @@
 
   views.TracksView = TracksView;
 
-  // ind track
+  //----------------------------------------- ind track
+
   var TrackView = React.createBackboneClass({
     render: function(){
       return (
@@ -46,7 +49,8 @@
   views.TrackView = TrackView;
 
 
-  //ind letter
+  //----------------------------------------- ind letter
+
   var LetterView = React.createBackboneClass({
     render: function(){
       return (
@@ -57,7 +61,7 @@
 
   views.LetterView = LetterView
 
-})(signapp.views = {});
+})(signapp.views = {}); // end function
 
 
 
