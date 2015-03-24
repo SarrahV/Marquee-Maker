@@ -1,15 +1,15 @@
 (function(models){
 
+  //----------------------------------------- ind track
   var SignTrack = Backbone.Model.extend({
-
-    initialize: function(){
-            console.log("I am a sign track");
-        }
-
+    defaults: {
+      sentence: " "
+    }
   });
 
+  //----------------------------------------- track collection
   var Tracks = Backbone.Collection.extend({
-
+    model: SignTrack
   });
 
   models.SignTrack = SignTrack;

@@ -14,7 +14,7 @@
             <label htmlFor={htmlID}>{label}</label>
           </div>
           <div>
-            <input type={type} name={name} id={htmlID} />
+            <input type={type} name={name} id={htmlID} />//on change set model sentence to new value from input
           </div>
         </div>
       );
@@ -26,13 +26,16 @@
   // tracks form
   var TrackInput = React.createClass({
 
+    showTracks: function(model, index){
+
+    },
+
     render: function(){
       return (
         <form>
-          // minimum of 2 tracks to start
-          <TextField name="track" label="Line 1"/>
-          <TextField name="track" label="Line 2"/>
-          <button>Add a Line +</button>
+        //show input for each model in collection
+          <button>Add a Line +</button>// needs to add new model to collection
+          <button>Remove Line -</button>
           <button>Done</button>
         </form>
       );

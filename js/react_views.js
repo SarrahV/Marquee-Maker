@@ -63,7 +63,7 @@
         React.createElement("div", {className: "wrap"}, 
           React.createElement("div", {className: "can metal linear"}, 
             React.createElement("div", {className: "face"}, 
-              React.createElement(TracksView, null)
+              React.createElement(TracksView, {collection: this.props.collection})
             )
           ), 
           React.createElement("div", {className: "pole metalPole linearPole"}
@@ -79,11 +79,15 @@
 
   var TracksView = React.createBackboneClass({
 
+    getTrack: function(model, index){
+      //grabs each model from the TrackView
+      return React.createElement(TrackView, {model: model, key: index})
+    },
+    //maps and renders each track to the tracksview
     render: function(){
       return (
         React.createElement("ul", {className: "tracks"}, 
-          React.createElement(TrackView, null), 
-          React.createElement(TrackView, null)
+          this.props.collection.map(this.getTrack)
         )
       )
     }
@@ -94,9 +98,18 @@
   //----------------------------------------- ind track
 
   var TrackView = React.createBackboneClass({
+    //take the sentence from the model
+    getWord: function(word, index){
+      return (
+        React.createElement(WordView, {word: word, key: index})
+      )
+    },
+    //splits on each space to get the word
     render: function(){
       return (
-      React.createElement("li", null, React.createElement(LetterView, null))
+      React.createElement("li", null, 
+        this.props.model.get("sentence").split(" ").map(this.getWord)
+      )
       )
     }
   });//end trackview
@@ -104,17 +117,25 @@
   views.TrackView = TrackView;
 
 
-  //----------------------------------------- ind letter
+  //----------------------------------------- ind word
 
-  var LetterView = React.createBackboneClass({
-    render: function(){
+  var WordView = React.createClass({displayName: "WordView",
+    // gets letter at the index, makes uppercase
+    getLetter: function(letter, index){
       return (
-        React.createElement("span", null, "A")
-      )
+        React.createElement("span", {key: index}, letter.toUpperCase())
+      );
+    },
+    // splits word at the letterspace, maps it, then calls getletter 
+    // gets the word from TrackView
+    render: function() {
+      return (
+        React.createElement("div", {className: "word"}, 
+           this.props.word.split("").map(this.getLetter) 
+        )
+      );
     }
-  });// end letterview
-
-  views.LetterView = LetterView
+  });// end wordview
 
 })(signapp.views = {}); // end function
 
@@ -139,7 +160,7 @@
             React.createElement("label", {htmlFor: htmlID}, label)
           ), 
           React.createElement("div", null, 
-            React.createElement("input", {type: type, name: name, id: htmlID})
+            React.createElement("input", {type: type, name: name, id: htmlID}), "//on change set model sentence to new value from input"
           )
         )
       );
@@ -151,13 +172,16 @@
   // tracks form
   var TrackInput = React.createClass({displayName: "TrackInput",
 
+    showTracks: function(model, index){
+
+    },
+
     render: function(){
       return (
         React.createElement("form", null, 
-          "// minimum of 2 tracks to start", 
-          React.createElement(TextField, {name: "track", label: "Line 1"}), 
-          React.createElement(TextField, {name: "track", label: "Line 2"}), 
-          React.createElement("button", null, "Add a Line +"), 
+        "//show input for each model in collection", 
+          React.createElement("button", null, "Add a Line +"), "// needs to add new model to collection", 
+          React.createElement("button", null, "Remove Line -"), 
           React.createElement("button", null, "Done")
         )
       );

@@ -9,7 +9,7 @@
         <div className="wrap"> 
           <div className="can metal linear">
             <div className="face">
-              <TracksView/>
+              <TracksView collection={this.props.collection}/>
             </div>
           </div>
           <div className="pole metalPole linearPole">
@@ -25,11 +25,15 @@
 
   var TracksView = React.createBackboneClass({
 
+    getTrack: function(model, index){
+      //grabs each model from the TrackView
+      return <TrackView model={model} key={index}/>
+    },
+    //maps and renders each track to the tracksview
     render: function(){
       return (
         <ul className="tracks">
-          <TrackView/>
-          <TrackView/>
+          {this.props.collection.map(this.getTrack)}
         </ul>
       )
     }
@@ -40,9 +44,18 @@
   //----------------------------------------- ind track
 
   var TrackView = React.createBackboneClass({
+    //take the sentence from the model
+    getWord: function(word, index){
+      return (
+        <WordView word={word} key={index}/>
+      )
+    },
+    //splits on each space to get the word
     render: function(){
       return (
-      <li><LetterView/></li>
+      <li>
+        {this.props.model.get("sentence").split(" ").map(this.getWord)}
+      </li>
       )
     }
   });//end trackview
@@ -50,17 +63,25 @@
   views.TrackView = TrackView;
 
 
-  //----------------------------------------- ind letter
+  //----------------------------------------- ind word
 
-  var LetterView = React.createBackboneClass({
-    render: function(){
+  var WordView = React.createClass({
+    // gets letter at the index, makes uppercase
+    getLetter: function(letter, index){
       return (
-        <span>A</span>
-      )
+        <span key={index}>{letter.toUpperCase()}</span>
+      );
+    },
+    // splits word at the letterspace, maps it, then calls getletter 
+    // gets the word from TrackView
+    render: function() {
+      return (
+        <div className="word">
+          { this.props.word.split("").map(this.getLetter) }
+        </div>
+      );
     }
-  });// end letterview
-
-  views.LetterView = LetterView
+  });// end wordview
 
 })(signapp.views = {}); // end function
 
