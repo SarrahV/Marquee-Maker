@@ -1,7 +1,7 @@
 (function(views){
 
   // textfield 
-  var TextField = React.createClass({
+  var TextField = React.createBackboneClass({
 
     render: function(){
       var name = this.props.name;
@@ -14,7 +14,7 @@
             <label htmlFor={htmlID}>{label}</label>
           </div>
           <div>
-            <input type={type} name={name} id={htmlID} />//on change set model sentence to new value from input
+            <input type={type} name={name} id={htmlID} placeholder="Enter Text"/>
           </div>
         </div>
       );
@@ -24,25 +24,29 @@
 
 
   // tracks form
-  var TrackInput = React.createClass({
-
+  var TracksInput = React.createBackboneClass({
+    //each textfield represents one model
     showTracks: function(model, index){
-
+      return (
+        <TextField model={model} key={index}/>
+      )
     },
 
     render: function(){
       return (
         <form>
-        //show input for each model in collection
-          <button>Add a Line +</button>// needs to add new model to collection
+          {this.props.collection.map(this.showTracks)}
+          <button>Add a Line +</button>
           <button>Remove Line -</button>
           <button>Done</button>
         </form>
       );
     }
-  });
+  });// end trackinput
 
-  views.TrackInput = TrackInput;
+
+  views.TextField  = TextField;
+  views.TracksInput = TracksInput;
 
 })(signapp.views);
 

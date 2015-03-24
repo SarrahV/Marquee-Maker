@@ -119,7 +119,7 @@
 
   //----------------------------------------- ind word
 
-  var WordView = React.createClass({displayName: "WordView",
+  var WordView = React.createBackboneClass({
     // gets letter at the index, makes uppercase
     getLetter: function(letter, index){
       return (
@@ -147,7 +147,7 @@
 (function(views){
 
   // textfield 
-  var TextField = React.createClass({displayName: "TextField",
+  var TextField = React.createBackboneClass({
 
     render: function(){
       var name = this.props.name;
@@ -160,7 +160,7 @@
             React.createElement("label", {htmlFor: htmlID}, label)
           ), 
           React.createElement("div", null, 
-            React.createElement("input", {type: type, name: name, id: htmlID}), "//on change set model sentence to new value from input"
+            React.createElement("input", {type: type, name: name, id: htmlID, placeholder: "Enter Text"})
           )
         )
       );
@@ -170,25 +170,29 @@
 
 
   // tracks form
-  var TrackInput = React.createClass({displayName: "TrackInput",
-
+  var TracksInput = React.createBackboneClass({
+    //each textfield represents one model
     showTracks: function(model, index){
-
+      return (
+        React.createElement(TextField, {model: model, key: index})
+      )
     },
 
     render: function(){
       return (
         React.createElement("form", null, 
-        "//show input for each model in collection", 
-          React.createElement("button", null, "Add a Line +"), "// needs to add new model to collection", 
+          this.props.collection.map(this.showTracks), 
+          React.createElement("button", null, "Add a Line +"), 
           React.createElement("button", null, "Remove Line -"), 
           React.createElement("button", null, "Done")
         )
       );
     }
-  });
+  });// end trackinput
 
-  views.TrackInput = TrackInput;
+
+  views.TextField  = TextField;
+  views.TracksInput = TracksInput;
 
 })(signapp.views);
 

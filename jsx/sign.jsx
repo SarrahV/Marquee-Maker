@@ -65,7 +65,7 @@
 
   //----------------------------------------- ind word
 
-  var WordView = React.createClass({
+  var WordView = React.createBackboneClass({
     // gets letter at the index, makes uppercase
     getLetter: function(letter, index){
       return (

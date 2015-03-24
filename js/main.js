@@ -6,7 +6,11 @@ $(function(){
     collection: sentences
   });
 
-  React.render(elem, document.querySelector('.main'));
+  var text = React.createElement(signapp.views.TracksInput, {
+    collection: sentences
+  });
 
+  React.render(elem, document.querySelector('.main'));
+  React.render(text, document.querySelector('aside'));
 
 });
