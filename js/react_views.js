@@ -149,6 +149,10 @@
   // textfield 
   var TextField = React.createBackboneClass({
 
+    onChange: function (event) {
+      this.props.model.set("sentence", event.target.value);
+    }, 
+
     render: function(){
       var name = this.props.name;
       var htmlID = "react-textfield-" + name + "-" + Math.random();
@@ -160,7 +164,7 @@
             React.createElement("label", {htmlFor: htmlID}, label)
           ), 
           React.createElement("div", null, 
-            React.createElement("input", {type: type, name: name, id: htmlID, placeholder: "Enter Text"})
+            React.createElement("input", {type: type, name: name, id: htmlID, placeholder: "Enter Text", onChange: this.onChange})
           )
         )
       );
@@ -171,6 +175,7 @@
 
   // tracks form
   var TracksInput = React.createBackboneClass({
+
     //each textfield represents one model
     showTracks: function(model, index){
       return (
