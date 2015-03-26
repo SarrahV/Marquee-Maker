@@ -83,7 +83,7 @@
     }
   });// end wordview
 
-})(signapp.views = {}); // end function
+})(signapp.views); // end function
 
 
 

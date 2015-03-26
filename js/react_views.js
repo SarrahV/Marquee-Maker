@@ -1,54 +1,89 @@
 (function(views){
 
-  // need this? Can't access other one...scope
-  var TextField = React.createClass({displayName: "TextField",
+  views.TwitterLoggedIn = React.createClass({displayName: "TwitterLoggedIn",
 
     render: function(){
-      var name = this.props.name;
-      var htmlID = "react-textfield-" + name + "-" + Math.random();
-      var label = this.props.label || name;
-      var type = this.props.typs || "text";
       return (
-        React.createElement("div", {className: "textfield"}, 
-          React.createElement("div", null, 
-            React.createElement("label", {htmlFor: htmlID}, label)
-          ), 
-          React.createElement("div", null, 
-            React.createElement("input", {type: type, name: name, id: htmlID})
-          )
+        React.createElement("div", {className: "logged-in", onClick: signapp.logout.bind(signapp)}, 
+          React.createElement("img", {className: "profile-image", src: this.props.img, alt: ""}), 
+          " ", 
+          React.createElement("span", null, this.props.name), 
+          " ", 
+          React.createElement(views.Icon, {fa: "sign-out"})
+        )
+      )
+    }
+  }); //end logged in
+
+   views.TwitterNotLoggedIn = React.createClass({displayName: "TwitterNotLoggedIn",
+
+    render: function() {
+      return (
+        React.createElement("div", {className: "not-logged-in", onClick: signapp.twitterLogin.bind(signapp)}, 
+          React.createElement("span", null, "Sign In With"), 
+          " ", 
+          React.createElement(views.Icon, {fa: "twitter"})
         )
       );
     }
-  });//end textfield
 
-  var Login = React.createClass({displayName: "Login",
+  });// end not logged in
 
-    onSubmit: function(e){
-      e.preventDefault();
-      var loginData = $(e.target).serializeJSON();
-      signapp.login(loginData);
+  views.TwitterLogin = React.createBackboneClass({
+    getChild: function(){
+      if(signapp.isLoggedIn()) {
+        var name = this.props.model.get("name");
+        var img = this.props.model.get("profile_image_url");
+        return React.createElement(views.TwitterLoggedIn, {name: name, img: img})
+      }
+      else{
+        return React.createElement(views.TwitterNotLoggedIn, null)
+      }
     },
 
     render: function(){
       return (
-        React.createElement("form", {onSubmit: this.onSubmit}, 
-          React.createElement(TextField, {name: "email", label: "Email"}), 
-          React.createElement(TextField, {name: "password", label: "Password", type: "password"}), 
-
-          React.createElement("button", null, "Sign In")
+        React.createElement("div", {className: "twitter-login"}, 
+           this.getChild() 
         )
       );
     }
-  });//end login
+  });// end Log in
 
-  var LogoutButton = React.createClass({displayName: "LogoutButton",
-    onClick: function(e){
-      e.preventDefault();
-      signapp.logout();
-    },
-    render: function(){
-      return React.createElement("button", {onClick: this.onClick}, "Logout");
+  views.Header = React.createBackboneClass({
+    render: function() {
+      return (
+        React.createElement("div", null, 
+          React.createElement("div", {className: "logo"}, "CrapApp"), 
+          React.createElement(views.TwitterLogin, {model: this.props.model})
+        )
+      );
     }
+  }); //end header
+
+})(signapp.views);
+
+
+
+
+
+
+
+(function(views) {
+
+  views.Icon = React.createClass({displayName: "Icon",
+
+    render: function() {
+      // create the font awesome class
+      var cssClass = "fa fa-" + this.props.fa;
+      // add spin effect 
+      if (this.props.spin) {
+        cssClass += " fa-spin";
+      }
+
+      return React.createElement("i", {className: cssClass})
+    }
+
   });
 
 })(signapp.views);
@@ -137,7 +172,7 @@
     }
   });// end wordview
 
-})(signapp.views = {}); // end function
+})(signapp.views); // end function
 
 
 

@@ -1,54 +1,70 @@
 (function(views){
 
-  // need this? Can't access other one...scope
-  var TextField = React.createClass({
+  views.TwitterLoggedIn = React.createClass({
 
     render: function(){
-      var name = this.props.name;
-      var htmlID = "react-textfield-" + name + "-" + Math.random();
-      var label = this.props.label || name;
-      var type = this.props.typs || "text";
       return (
-        <div className="textfield">
-          <div>
-            <label htmlFor={htmlID}>{label}</label>
-          </div>
-          <div>
-            <input type={type} name={name} id={htmlID}/>
-          </div>
+        <div className="logged-in" onClick={signapp.logout.bind(signapp)}>
+          <img className="profile-image" src={this.props.img} alt=""/>
+          {" "}
+          <span>{this.props.name}</span>
+          {" "}
+          <views.Icon fa="sign-out"/>
+        </div>
+      )
+    }
+  }); //end logged in
+
+   views.TwitterNotLoggedIn = React.createClass({
+
+    render: function() {
+      return (
+        <div className="not-logged-in" onClick={signapp.twitterLogin.bind(signapp)}>
+          <span>Sign In With</span>
+          {" "}
+          <views.Icon fa="twitter"/>
         </div>
       );
     }
-  });//end textfield
 
-  var Login = React.createClass({
+  });// end not logged in
 
-    onSubmit: function(e){
-      e.preventDefault();
-      var loginData = $(e.target).serializeJSON();
-      signapp.login(loginData);
+  views.TwitterLogin = React.createBackboneClass({
+    getChild: function(){
+      if(signapp.isLoggedIn()) {
+        var name = this.props.model.get("name");
+        var img = this.props.model.get("profile_image_url");
+        return <views.TwitterLoggedIn name={name} img={img}/>
+      }
+      else{
+        return <views.TwitterNotLoggedIn/>
+      }
     },
 
     render: function(){
       return (
-        <form onSubmit={this.onSubmit}>
-          <TextField name="email" label="Email"/>
-          <TextField name="password" label="Password" type="password"/>
-
-          <button>Sign In</button>
-        </form>
+        <div className="twitter-login">
+          { this.getChild() }
+        </div>
       );
     }
-  });//end login
+  });// end Log in
 
-  var LogoutButton = React.createClass({
-    onClick: function(e){
-      e.preventDefault();
-      signapp.logout();
-    },
-    render: function(){
-      return <button onClick={this.onClick}>Logout</button>;
+  views.Header = React.createBackboneClass({
+    render: function() {
+      return (
+        <div>
+          <div className="logo">CrapApp</div>
+          <views.TwitterLogin model={this.props.model}/>
+        </div>
+      );
     }
-  });
+  }); //end header
 
 })(signapp.views);
+
+
+
+
+
+

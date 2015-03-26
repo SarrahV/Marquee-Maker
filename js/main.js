@@ -1,16 +1,25 @@
 $(function(){
 
+  signapp.init();
+
   window.sentences = new signapp.models.Tracks([{},{},{}]);
 
-  var elem = React.createElement(signapp.views.SignView, {
+  var sign = React.createElement(signapp.views.SignView, {
     collection: sentences
   });
 
-  var text = React.createElement(signapp.views.TracksInput, {
+  var input = React.createElement(signapp.views.TracksInput, {
     collection: sentences
   });
 
-  React.render(elem, document.querySelector('.main'));
-  React.render(text, document.querySelector('aside'));
+  var signin = React.createElement(signapp.views.Header, {
+    model: signapp.currentUser
+  });
+
+  React.render(signin, document.querySelector('header'));
+  React.render(sign, document.querySelector('.main'));
+  React.render(input, document.querySelector('aside'));
+
+  Backbone.history.start();
 
 });
