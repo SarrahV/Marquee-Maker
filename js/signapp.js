@@ -65,7 +65,7 @@ window.signapp = {
   },
 
   logout: function() {
-    this.firRef.unauth();
+    this.fireRef.unauth();
   }
 
 

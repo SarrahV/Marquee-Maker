@@ -29,7 +29,7 @@
 
   });// end not logged in
 
-  views.TwitterLogin = React.createBackboneClass({
+  views.TwitterLogIn = React.createBackboneClass({
     getChild: function(){
       if(signapp.isLoggedIn()) {
         var name = this.props.model.get("name");
@@ -54,8 +54,10 @@
     render: function() {
       return (
         <div>
-          <div className="logo">CrapApp</div>
-          <views.TwitterLogin model={this.props.model}/>
+          <div className="logo">
+            <h2>SignApp</h2>
+          </div>
+          <views.TwitterLogIn model={this.props.model}/>
         </div>
       );
     }

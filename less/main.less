@@ -1,21 +1,82 @@
 body {
-  background: #949494;
+  background: #527da9;
   margin: 0;
   padding: 0;
+  color: #f1f1f1;
+  font-family: 'Open Sans', sans-serif;
 }
 header{
-  background: #55c0ec;
-  height: 25px;// temp for proto
-  margin: 0;
-  padding: 0;
-  font-size: 12px;
+  background: #4cb1e0;
+  .logo {
+    font-size: 18px;
+    margin: 0 25px 0 25px;
+    font-family: 'Anton', sans-serif;
+    display: inline-block;
+    h2 {
+      margin: 0;
+      padding: 0;
+      font-weight: normal;
+    }
+  }// end logo
 }
-aside{
+.twitter-login {
+  font-size: 12px;
+  font-weight: 400;
+  padding: 10px 25px;
+  border-left: 1px solid #f1bf6a;
+  display: inline-block;
+  cursor: pointer;
+  .logged-in {
+    img {
+      border-radius: 25%;
+      height: 32px;
+      width: auto;
+      vertical-align:  middle;
+    }
+    .fa {
+      font-size: 3em;
+      vertical-align: -8px;
+    }
+  }
+}// end twitter login
+aside {
   float:left;
   height: 300px;
   width: 300px;
-  background-color: rgba(0,0,0,0.25);//temp for proto
-}
+  background: rgba(0,0,0,0.25);//temp for proto
+    .textfield {
+      input{
+        width: 50%;
+        background: rgba(76,177,224,0.40);
+        border: 1px solid #789;
+        padding: 5px;
+        border-radius: 14px;
+        color: #f1f1f1;
+        margin: 25px auto;
+        display: block;
+        &:focus {
+          outline: none;
+          border: 1px solid #abc;
+        }
+      }
+  }// end text-field
+  form {
+    .add-remove {
+      width: 300px;
+      margin-left: 50px;
+    }
+    a:link {
+      color: #fff;
+      font-size: 1.5em;
+      text-decoration: none;
+    }  
+    a:visited {
+      color: #fff;
+      font-size: 1.5em;
+      text-decoration: none;
+    } 
+  }
+}// end aside
 .wrap {
   //float:left;
   .can {
@@ -61,14 +122,12 @@ aside{
               box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.25);
             }
             span {
-              font-family: Helvetica, Arial, sans-serif;
-              text-align: center;
-              font-weight: bold;
-              font-size: 3em;
+              font-family: test-font;
+              font-size: 2.4em;
               color: #000;
               margin: 0;
               background-color: rgba(204, 204, 204, 0.25);
-              width: 40px;
+              //width: 40px;
               height: 45.3px;
               padding: 2px;
               box-sizing: border-box;
@@ -81,6 +140,13 @@ aside{
         }/*end tracks*/
     }
   }/* end can */
+
+  .word {
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 100%;
+    float: left;
+  }
 
   .metal {
     outline: none;
@@ -130,9 +196,8 @@ aside{
   width: 20px;
 }
 
-.twitter-login {
-  float: right;
-  cursor: pointer;
-}
+
+
+
 
 

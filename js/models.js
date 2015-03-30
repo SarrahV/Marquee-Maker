@@ -15,4 +15,4 @@
   models.SignTrack = SignTrack;
   models.Tracks    = Tracks;
 
-})(signapp.models = {});
+})(signapp.models);

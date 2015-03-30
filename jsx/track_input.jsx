@@ -41,9 +41,9 @@
       return (
         <form>
           {this.props.collection.map(this.showTracks)}
-          <button>Add a Line +</button>
-          <button>Remove Line -</button>
-          <button>Done</button>
+          <div className="add-remove">
+            <span><a href="#">+</a> / <a href="#">-</a></span>
+          </div>
         </form>
       );
     }

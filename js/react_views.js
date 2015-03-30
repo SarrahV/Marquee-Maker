@@ -29,7 +29,7 @@
 
   });// end not logged in
 
-  views.TwitterLogin = React.createBackboneClass({
+  views.TwitterLogIn = React.createBackboneClass({
     getChild: function(){
       if(signapp.isLoggedIn()) {
         var name = this.props.model.get("name");
@@ -54,8 +54,10 @@
     render: function() {
       return (
         React.createElement("div", null, 
-          React.createElement("div", {className: "logo"}, "CrapApp"), 
-          React.createElement(views.TwitterLogin, {model: this.props.model})
+          React.createElement("div", {className: "logo"}, 
+            React.createElement("h2", null, "SignApp")
+          ), 
+          React.createElement(views.TwitterLogIn, {model: this.props.model})
         )
       );
     }
@@ -222,9 +224,9 @@
       return (
         React.createElement("form", null, 
           this.props.collection.map(this.showTracks), 
-          React.createElement("button", null, "Add a Line +"), 
-          React.createElement("button", null, "Remove Line -"), 
-          React.createElement("button", null, "Done")
+          React.createElement("div", {className: "add-remove"}, 
+            React.createElement("span", null, React.createElement("a", {href: "#"}, "+"), " / ", React.createElement("a", {href: "#"}, "-"))
+          )
         )
       );
     }
