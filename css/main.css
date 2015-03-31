@@ -79,6 +79,22 @@ aside form .add-remove .add {
 aside form .add-remove .delete {
   float: left;
 }
+aside form .board-width {
+  float: left;
+  margin: 20px 45px 25px 35px;
+  text-align: center;
+}
+aside form .board-width h3 {
+  font-size: .9em;
+}
+aside form .letter-height {
+  float: left;
+  margin-top: 20px;
+  text-align: center;
+}
+aside form .letter-height h3 {
+  font-size: .9em;
+}
 .wrap {
   /* end can */
 }

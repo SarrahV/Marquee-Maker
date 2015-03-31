@@ -268,12 +268,13 @@
     render: function(){
       return (
         React.createElement("div", {className: "board-width"}, 
+          React.createElement("h3", null, "Board Width"), 
           React.createElement("select", null, 
-            React.createElement("option", {value: "sixty"}, "60 inch"), 
-            React.createElement("option", {value: "seventy-two"}, "72 inch"), 
-            React.createElement("option", {value: "eighty-eight"}, "88 inch"), 
-            React.createElement("option", {value: "ninety-six"}, "96 inch"), 
-            React.createElement("option", {value: "one-twenty"}, "120 inch")
+            React.createElement("option", {value: "sixty"}, "60 in"), 
+            React.createElement("option", {value: "seventy-two"}, "72 in"), 
+            React.createElement("option", {value: "eighty-eight"}, "88 in"), 
+            React.createElement("option", {value: "ninety-six"}, "96 in"), 
+            React.createElement("option", {value: "one-twenty"}, "120 in")
           )
         )
       )
@@ -286,10 +287,11 @@
     render: function(){
       return (
         React.createElement("div", {className: "letter-height"}, 
+          React.createElement("h3", null, "Letter Height"), 
           React.createElement("select", null, 
-            React.createElement("option", {value: "six"}, "5 inch"), 
-            React.createElement("option", {value: "seven"}, "7 inch"), 
-            React.createElement("option", {value: "ten"}, "10 inch")
+            React.createElement("option", {value: "six"}, "5 in"), 
+            React.createElement("option", {value: "seven"}, "7 in"), 
+            React.createElement("option", {value: "ten"}, "10 in")
           )
         )
       )

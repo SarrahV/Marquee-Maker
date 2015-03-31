@@ -85,12 +85,13 @@
     render: function(){
       return (
         <div className="board-width">
+          <h3>Board Width</h3>
           <select>
-            <option value="sixty">60 inch</option>
-            <option value="seventy-two">72 inch</option>
-            <option value="eighty-eight">88 inch</option>
-            <option value="ninety-six">96 inch</option>
-            <option value="one-twenty">120 inch</option>
+            <option value="sixty">60 in</option>
+            <option value="seventy-two">72 in</option>
+            <option value="eighty-eight">88 in</option>
+            <option value="ninety-six">96 in</option>
+            <option value="one-twenty">120 in</option>
           </select>
         </div>
       )
@@ -103,10 +104,11 @@
     render: function(){
       return (
         <div className="letter-height">
+          <h3>Letter Height</h3>
           <select>
-            <option value="six">5 inch</option>
-            <option value="seven">7 inch</option>
-            <option value="ten">10 inch</option>
+            <option value="six">5 in</option>
+            <option value="seven">7 in</option>
+            <option value="ten">10 in</option>
           </select>
         </div>
       )
