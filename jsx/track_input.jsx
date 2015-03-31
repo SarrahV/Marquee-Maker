@@ -42,12 +42,56 @@
         <form>
           {this.props.collection.map(this.showTracks)}
           <div className="add-remove">
-            <span><a href="#">+</a> / <a href="#">-</a></span>
+            <span className="add"><a href="#">+</a></span>
+            <span className="delete"><a href="#">-</a></span>
           </div>
+          <SelectStyle/>
         </form>
       );
     }
   });// end trackinput
+
+  //style selection
+  var SelectStyle = React.createBackboneClass({
+
+    render: function(){
+      return (
+        <div className="style">
+          <div className="standard">
+            <a href="#"><span>C</span></a>
+            <h3>Standard</h3>
+          </div>
+          <div className="condensed">
+            <a href="#"><span>C</span></a>
+            <h3>Condensed</h3>
+          </div>
+          <div className="modern">
+            <a href="#"><span>C</span></a>
+            <h3>Modern</h3>
+          </div>
+        </div>
+      );
+    }
+
+  });
+
+  //Board width and height selection
+  var BoardSize = React.createBackboneClass({
+
+    render: function(){
+
+    }
+
+  });
+
+  //Count of characters used
+  var CharacterCount = React.createBackboneClass({
+
+    render: function(){
+
+    }
+
+  });
 
 
   views.TextField  = TextField;

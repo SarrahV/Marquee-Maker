@@ -38,8 +38,9 @@ header .logo h2 {
   vertical-align: -8px;
 }
 aside {
+  margin-left: 25px;
   float: left;
-  height: 300px;
+  height: auto;
   width: 300px;
   background: rgba(0, 0, 0, 0.25);
 }
@@ -61,15 +62,22 @@ aside form .add-remove {
   width: 300px;
   margin-left: 50px;
 }
-aside form a:link {
+aside form .add-remove a:link {
   color: #fff;
   font-size: 1.5em;
   text-decoration: none;
 }
-aside form a:visited {
+aside form .add-remove a:visited {
   color: #fff;
   font-size: 1.5em;
   text-decoration: none;
+}
+aside form .add-remove .add {
+  float: left;
+  margin-right: 175px;
+}
+aside form .add-remove .delete {
+  float: left;
 }
 .wrap {
   /* end can */
@@ -121,11 +129,12 @@ aside form a:visited {
   box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 0.25);
 }
 .wrap .can .face .tracks span {
-  font-family: test-font;
+  font-family: standard2;
   font-size: 2.4em;
   color: #000;
   margin: 0;
   background-color: rgba(204, 204, 204, 0.25);
+  width: 40px;
   height: 45.3px;
   padding: 2px;
   box-sizing: border-box;
@@ -171,4 +180,80 @@ aside form a:visited {
 }
 .thin {
   width: 20px;
+}
+.style {
+  text-align: center;
+  clear: both;
+}
+.style h3 {
+  font-size: .5em;
+}
+.style .standard {
+  text-align: center;
+  display: inline-block;
+  margin: 25px 15px 0 15px;
+}
+.style .standard span {
+  font-family: standard2;
+  font-size: 2.4em;
+  color: #000;
+  margin: 0;
+  background-color: rgba(204, 204, 204, 0.25);
+  width: 40px;
+  height: 45.3px;
+  padding: 2px;
+  box-sizing: border-box;
+  text-shadow: none;
+  -webkit-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+}
+.style .condensed {
+  text-align: center;
+  display: inline-block;
+  margin: 0 15px;
+}
+.style .condensed span {
+  font-family: standard2;
+  font-size: 2.4em;
+  color: #000;
+  margin: 0;
+  background-color: rgba(204, 204, 204, 0.25);
+  width: 40px;
+  height: 45.3px;
+  padding: 2px;
+  box-sizing: border-box;
+  text-shadow: none;
+  -webkit-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+}
+.style .modern {
+  text-align: center;
+  display: inline-block;
+  margin: 0 15px;
+}
+.style .modern span {
+  font-family: standard2;
+  font-size: 2.4em;
+  color: #000;
+  margin: 0;
+  background-color: rgba(204, 204, 204, 0.25);
+  width: 40px;
+  height: 45.3px;
+  padding: 2px;
+  box-sizing: border-box;
+  text-shadow: none;
+  -webkit-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+}
+.style a:link {
+  text-decoration: none;
+}
+.style a:visited {
+  text-decoration: none;
+}
+.style a:hover {
+  text-decoration: none;
 }

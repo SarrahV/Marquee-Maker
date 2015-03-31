@@ -225,12 +225,56 @@
         React.createElement("form", null, 
           this.props.collection.map(this.showTracks), 
           React.createElement("div", {className: "add-remove"}, 
-            React.createElement("span", null, React.createElement("a", {href: "#"}, "+"), " / ", React.createElement("a", {href: "#"}, "-"))
-          )
+            React.createElement("span", {className: "add"}, React.createElement("a", {href: "#"}, "+")), 
+            React.createElement("span", {className: "delete"}, React.createElement("a", {href: "#"}, "-"))
+          ), 
+          React.createElement(SelectStyle, null)
         )
       );
     }
   });// end trackinput
+
+  //style selection
+  var SelectStyle = React.createBackboneClass({
+
+    render: function(){
+      return (
+        React.createElement("div", {className: "style"}, 
+          React.createElement("div", {className: "standard"}, 
+            React.createElement("a", {href: "#"}, React.createElement("span", null, "C")), 
+            React.createElement("h3", null, "Standard")
+          ), 
+          React.createElement("div", {className: "condensed"}, 
+            React.createElement("a", {href: "#"}, React.createElement("span", null, "C")), 
+            React.createElement("h3", null, "Condensed")
+          ), 
+          React.createElement("div", {className: "modern"}, 
+            React.createElement("a", {href: "#"}, React.createElement("span", null, "C")), 
+            React.createElement("h3", null, "Modern")
+          )
+        )
+      );
+    }
+
+  });
+
+  //Board width and height selection
+  var BoardSize = React.createBackboneClass({
+
+    render: function(){
+
+    }
+
+  });
+
+  //Count of characters used
+  var CharacterCount = React.createBackboneClass({
+
+    render: function(){
+
+    }
+
+  });
 
 
   views.TextField  = TextField;
