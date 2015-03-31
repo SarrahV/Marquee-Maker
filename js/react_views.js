@@ -223,6 +223,10 @@
     render: function(){
       return (
         React.createElement("form", null, 
+          React.createElement("div", {className: "size"}, 
+            React.createElement(BoardSize, null), 
+            React.createElement(LetterSize, null)
+          ), 
           this.props.collection.map(this.showTracks), 
           React.createElement("div", {className: "add-remove"}, 
             React.createElement("span", {className: "add"}, React.createElement("a", {href: "#"}, "+")), 
@@ -262,9 +266,34 @@
   var BoardSize = React.createBackboneClass({
 
     render: function(){
-
+      return (
+        React.createElement("div", {className: "board-width"}, 
+          React.createElement("select", null, 
+            React.createElement("option", {value: "sixty"}, "60 inch"), 
+            React.createElement("option", {value: "seventy-two"}, "72 inch"), 
+            React.createElement("option", {value: "eighty-eight"}, "88 inch"), 
+            React.createElement("option", {value: "ninety-six"}, "96 inch"), 
+            React.createElement("option", {value: "one-twenty"}, "120 inch")
+          )
+        )
+      )
     }
+  });
 
+  //Letter height selection
+  var LetterSize = React.createBackboneClass({
+
+    render: function(){
+      return (
+        React.createElement("div", {className: "letter-height"}, 
+          React.createElement("select", null, 
+            React.createElement("option", {value: "six"}, "5 inch"), 
+            React.createElement("option", {value: "seven"}, "7 inch"), 
+            React.createElement("option", {value: "ten"}, "10 inch")
+          )
+        )
+      )
+    }
   });
 
   //Count of characters used

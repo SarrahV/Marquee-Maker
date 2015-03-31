@@ -40,6 +40,10 @@
     render: function(){
       return (
         <form>
+          <div className="size">
+            <BoardSize/>
+            <LetterSize/>
+          </div>
           {this.props.collection.map(this.showTracks)}
           <div className="add-remove">
             <span className="add"><a href="#">+</a></span>
@@ -79,9 +83,34 @@
   var BoardSize = React.createBackboneClass({
 
     render: function(){
-
+      return (
+        <div className="board-width">
+          <select>
+            <option value="sixty">60 inch</option>
+            <option value="seventy-two">72 inch</option>
+            <option value="eighty-eight">88 inch</option>
+            <option value="ninety-six">96 inch</option>
+            <option value="one-twenty">120 inch</option>
+          </select>
+        </div>
+      )
     }
+  });
 
+  //Letter height selection
+  var LetterSize = React.createBackboneClass({
+
+    render: function(){
+      return (
+        <div className="letter-height">
+          <select>
+            <option value="six">5 inch</option>
+            <option value="seven">7 inch</option>
+            <option value="ten">10 inch</option>
+          </select>
+        </div>
+      )
+    }
   });
 
   //Count of characters used
