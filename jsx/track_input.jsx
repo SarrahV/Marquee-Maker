@@ -123,9 +123,11 @@
     }
 
   });
-
-
-  views.TextField  = TextField;
+  
+  views.SelectStyle = SelectStyle;
+  views.BoardSize   = BoardSize;
+  views.LetterSize  = LetterSize;
+  views.TextField   = TextField;
   views.TracksInput = TracksInput;
 
 })(signapp.views);
