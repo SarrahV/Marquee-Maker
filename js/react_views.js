@@ -188,8 +188,23 @@
   // textfield 
   var TextField = React.createBackboneClass({
 
+    getDefaultProps: function() {
+      return {
+        maxChars: 5
+      };
+    },
+
+    getInitialState: function() {
+      return {
+        sentence: ""
+      };
+    },
+
     onChange: function (event) {
-      this.props.model.set("sentence", event.target.value);
+      var sentence = event.target.value;
+      sentence = sentence.substr(0, this.props.maxChars);
+      this.setState({sentence: sentence});
+      this.props.model.set("sentence", sentence);
     }, 
 
     render: function(){
@@ -203,7 +218,7 @@
             React.createElement("label", {htmlFor: htmlID}, label)
           ), 
           React.createElement("div", null, 
-            React.createElement("input", {type: type, name: name, id: htmlID, placeholder: "Enter Text", onChange: this.onChange})
+            React.createElement("input", {value: this.state.sentence, type: type, name: name, id: htmlID, placeholder: "Enter Text", onChange: this.onChange})
           )
         )
       );
@@ -218,7 +233,7 @@
     //each textfield represents one model
     showTracks: function(model, index){
       return (
-        React.createElement(TextField, {model: model, key: index})
+        React.createElement(TextField, {model: model, key: index, maxChars: "5"})
       )
     },
 
@@ -231,8 +246,8 @@
           ), 
           this.props.collection.map(this.showTracks), 
           React.createElement("div", {className: "add-remove"}, 
-            React.createElement(AddTrack, null), 
-            React.createElement(RemoveTrack, null)
+            React.createElement(AddTrack, {collection: this.props.collection}), 
+            React.createElement(RemoveTrack, {collection: this.props.collection})
           ), 
           React.createElement(SelectStyle, null)
         )
@@ -244,12 +259,13 @@
   var AddTrack = React.createBackboneClass({
 
     onAdd: function(e){
-
+      e.preventDefault();
+      this.props.collection.add({});
     },
 
     render: function(){
       return (
-          React.createElement("span", {className: "add"}, React.createElement("a", {href: "#", onAdd: this.onAdd}, "+"))
+          React.createElement("span", {className: "add"}, React.createElement("a", {href: "#", onClick: this.onAdd}, "+"))
       );
     }
 
@@ -260,12 +276,13 @@
   var RemoveTrack = React.createBackboneClass({
 
     onRemove: function(e){
-
+       e.preventDefault();
+       this.props.collection.pop();
     },
     
     render: function(){
       return (
-          React.createElement("span", {className: "delete"}, React.createElement("a", {href: "#", onRemove: this.onRemove}, "-"))
+          React.createElement("span", {className: "delete"}, React.createElement("a", {href: "#", onClick: this.onRemove}, "-"))
       );
     }
 
@@ -334,6 +351,10 @@
 
   //Count of characters used
   var CharacterCount = React.createBackboneClass({
+
+    showChars: function(){
+
+    },
 
     render: function(){
 

@@ -3,8 +3,23 @@
   // textfield 
   var TextField = React.createBackboneClass({
 
+    getDefaultProps: function() {
+      return {
+        maxChars: 5
+      };
+    },
+
+    getInitialState: function() {
+      return {
+        sentence: ""
+      };
+    },
+
     onChange: function (event) {
-      this.props.model.set("sentence", event.target.value);
+      var sentence = event.target.value;
+      sentence = sentence.substr(0, this.props.maxChars);
+      this.setState({sentence: sentence});
+      this.props.model.set("sentence", sentence);
     }, 
 
     render: function(){
@@ -18,7 +33,7 @@
             <label htmlFor={htmlID}>{label}</label>
           </div>
           <div>
-            <input type={type} name={name} id={htmlID} placeholder="Enter Text" onChange={this.onChange}/>
+            <input value={this.state.sentence} type={type} name={name} id={htmlID} placeholder="Enter Text" onChange={this.onChange}/>
           </div>
         </div>
       );
@@ -33,7 +48,7 @@
     //each textfield represents one model
     showTracks: function(model, index){
       return (
-        <TextField model={model} key={index} />
+        <TextField model={model} key={index} maxChars="5" />
       )
     },
 
@@ -46,8 +61,8 @@
           </div>
           {this.props.collection.map(this.showTracks)}
           <div className="add-remove">
-            <AddTrack/>
-            <RemoveTrack/>
+            <AddTrack collection={this.props.collection}/>
+            <RemoveTrack collection={this.props.collection}/>
           </div>
           <SelectStyle/>
         </form>
@@ -59,12 +74,13 @@
   var AddTrack = React.createBackboneClass({
 
     onAdd: function(e){
-
+      e.preventDefault();
+      this.props.collection.add({});
     },
 
     render: function(){
       return (
-          <span className="add"><a href="#" onAdd={this.onAdd}>+</a></span>
+          <span className="add"><a href="#" onClick={this.onAdd}>+</a></span>
       );
     }
 
@@ -75,12 +91,13 @@
   var RemoveTrack = React.createBackboneClass({
 
     onRemove: function(e){
-
+       e.preventDefault();
+       this.props.collection.pop();
     },
     
     render: function(){
       return (
-          <span className="delete"><a href="#" onRemove={this.onRemove}>-</a></span>
+          <span className="delete"><a href="#" onClick={this.onRemove}>-</a></span>
       );
     }
 
@@ -149,6 +166,10 @@
 
   //Count of characters used
   var CharacterCount = React.createBackboneClass({
+
+    showChars: function(){
+
+    },
 
     render: function(){
 
