@@ -276,3 +276,9 @@ aside form .letter-height h3 {
 .style a:hover {
   text-decoration: none;
 }
+.chars-count {
+  padding: 25px;
+}
+.chars-count h3 {
+  font-size: .9em;
+}

@@ -20,6 +20,7 @@
       sentence = sentence.substr(0, this.props.maxChars);
       this.setState({sentence: sentence});
       this.props.model.set("sentence", sentence);
+      //call charcount here???
     }, 
 
     render: function(){
@@ -33,7 +34,12 @@
             <label htmlFor={htmlID}>{label}</label>
           </div>
           <div>
-            <input value={this.state.sentence} type={type} name={name} id={htmlID} placeholder="Enter Text" onChange={this.onChange}/>
+            <input
+            value={this.state.sentence} 
+            type={type} name={name} 
+            id={htmlID} 
+            placeholder="Enter Text" 
+            onChange={this.onChange}/>
           </div>
         </div>
       );
@@ -48,7 +54,7 @@
     //each textfield represents one model
     showTracks: function(model, index){
       return (
-        <TextField model={model} key={index} maxChars="5" />
+        <TextField model={model} key={index} maxChars="10" />
       )
     },
 
@@ -65,6 +71,7 @@
             <RemoveTrack collection={this.props.collection}/>
           </div>
           <SelectStyle/>
+          <CharacterCount collection={this.props.collection}/>
         </form>
       );
     }
@@ -80,7 +87,9 @@
 
     render: function(){
       return (
-          <span className="add"><a href="#" onClick={this.onAdd}>+</a></span>
+          <span className="add">
+            <a href="#" onClick={this.onAdd}>+</a>
+          </span>
       );
     }
 
@@ -97,7 +106,9 @@
     
     render: function(){
       return (
-          <span className="delete"><a href="#" onClick={this.onRemove}>-</a></span>
+          <span className="delete">
+            <a href="#" onClick={this.onRemove}>-</a>
+          </span>
       );
     }
 
@@ -167,21 +178,86 @@
   //Count of characters used
   var CharacterCount = React.createBackboneClass({
 
-    showChars: function(){
 
+    componentWillMount: function() {
+      this.props.collection.on("change", function(){
+
+        this.setState({
+          charCounts: this.getCharCount()
+        });
+
+      }, this);
     },
 
-    render: function(){
+    getInitialState: function() {
+      return {
+        charCounts: {}
+      }
+    },
 
+    getCharCount: function() {
+      var sentences = this.props.collection.pluck("sentence"); 
+      var letters = sentences.join("");
+
+      letters = letters.replace(/ /g, "");
+      letters = letters.split("");
+
+      var grouped = _.groupBy(letters);
+      var answer = {};
+
+      _.each(grouped, function(value, key) {
+        answer[key] = value.length;
+      });
+
+      return answer;
+      console.log(answer);
+    },
+
+    // getChars: function() {
+    //   var counts = this.getCharCount();
+
+    //   // console.log("counts", counts);
+
+    //   return _.map(counts, function(count, letter) {
+    //     // console.log("count", count, "letter", letter);
+    //     return (
+    //       <div key={letter}>
+    //         <strong>{letter}</strong>
+    //         <span>{count}</span>
+    //       </div>
+    //     );
+    //   });
+    // },
+
+    getChar: function(count, letter) {
+      return (
+        <div key={letter}>
+          the letter <strong>{letter}</strong> occured <strong>{count}</strong> times
+        </div>
+      );
+    },
+
+    render: function() {
+      // window.cc = this;
+      // console.log("rendering char count");
+      // console.log(this.getCharCount());
+      // window.rn = this.getChars();
+      return (
+        <div className="chars-count">
+          <h3>Character Count</h3>
+          <div>{_.map(this.state.charCounts, this.getChar)}</div>
+        </div>
+      )
     }
 
   });
   
-  views.SelectStyle = SelectStyle;
-  views.BoardSize   = BoardSize;
-  views.LetterSize  = LetterSize;
-  views.TextField   = TextField;
-  views.TracksInput = TracksInput;
+  views.CharacterCount = CharacterCount;
+  views.SelectStyle    = SelectStyle;
+  views.BoardSize      = BoardSize;
+  views.LetterSize     = LetterSize;
+  views.TextField      = TextField;
+  views.TracksInput    = TracksInput;
 
 })(signapp.views);
 

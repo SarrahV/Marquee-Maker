@@ -205,6 +205,7 @@
       sentence = sentence.substr(0, this.props.maxChars);
       this.setState({sentence: sentence});
       this.props.model.set("sentence", sentence);
+      //call charcount here???
     }, 
 
     render: function(){
@@ -218,7 +219,12 @@
             React.createElement("label", {htmlFor: htmlID}, label)
           ), 
           React.createElement("div", null, 
-            React.createElement("input", {value: this.state.sentence, type: type, name: name, id: htmlID, placeholder: "Enter Text", onChange: this.onChange})
+            React.createElement("input", {
+            value: this.state.sentence, 
+            type: type, name: name, 
+            id: htmlID, 
+            placeholder: "Enter Text", 
+            onChange: this.onChange})
           )
         )
       );
@@ -233,7 +239,7 @@
     //each textfield represents one model
     showTracks: function(model, index){
       return (
-        React.createElement(TextField, {model: model, key: index, maxChars: "5"})
+        React.createElement(TextField, {model: model, key: index, maxChars: "10"})
       )
     },
 
@@ -249,7 +255,8 @@
             React.createElement(AddTrack, {collection: this.props.collection}), 
             React.createElement(RemoveTrack, {collection: this.props.collection})
           ), 
-          React.createElement(SelectStyle, null)
+          React.createElement(SelectStyle, null), 
+          React.createElement(CharacterCount, {collection: this.props.collection})
         )
       );
     }
@@ -265,7 +272,9 @@
 
     render: function(){
       return (
-          React.createElement("span", {className: "add"}, React.createElement("a", {href: "#", onClick: this.onAdd}, "+"))
+          React.createElement("span", {className: "add"}, 
+            React.createElement("a", {href: "#", onClick: this.onAdd}, "+")
+          )
       );
     }
 
@@ -282,7 +291,9 @@
     
     render: function(){
       return (
-          React.createElement("span", {className: "delete"}, React.createElement("a", {href: "#", onClick: this.onRemove}, "-"))
+          React.createElement("span", {className: "delete"}, 
+            React.createElement("a", {href: "#", onClick: this.onRemove}, "-")
+          )
       );
     }
 
@@ -352,21 +363,86 @@
   //Count of characters used
   var CharacterCount = React.createBackboneClass({
 
-    showChars: function(){
 
+    componentWillMount: function() {
+      this.props.collection.on("change", function(){
+
+        this.setState({
+          charCounts: this.getCharCount()
+        });
+
+      }, this);
     },
 
-    render: function(){
+    getInitialState: function() {
+      return {
+        charCounts: {}
+      }
+    },
 
+    getCharCount: function() {
+      var sentences = this.props.collection.pluck("sentence"); 
+      var letters = sentences.join("");
+
+      letters = letters.replace(/ /g, "");
+      letters = letters.split("");
+
+      var grouped = _.groupBy(letters);
+      var answer = {};
+
+      _.each(grouped, function(value, key) {
+        answer[key] = value.length;
+      });
+
+      return answer;
+      console.log(answer);
+    },
+
+    // getChars: function() {
+    //   var counts = this.getCharCount();
+
+    //   // console.log("counts", counts);
+
+    //   return _.map(counts, function(count, letter) {
+    //     // console.log("count", count, "letter", letter);
+    //     return (
+    //       <div key={letter}>
+    //         <strong>{letter}</strong>
+    //         <span>{count}</span>
+    //       </div>
+    //     );
+    //   });
+    // },
+
+    getChar: function(count, letter) {
+      return (
+        React.createElement("div", {key: letter}, 
+          "the letter ", React.createElement("strong", null, letter), " occured ", React.createElement("strong", null, count), " times"
+        )
+      );
+    },
+
+    render: function() {
+      // window.cc = this;
+      // console.log("rendering char count");
+      // console.log(this.getCharCount());
+      // window.rn = this.getChars();
+      return (
+        React.createElement("div", {className: "chars-count"}, 
+          React.createElement("h3", null, "Character Count"), 
+          React.createElement("div", null, _.map(this.state.charCounts, this.getChar))
+        )
+      )
     }
 
   });
   
-  views.SelectStyle = SelectStyle;
-  views.BoardSize   = BoardSize;
-  views.LetterSize  = LetterSize;
-  views.TextField   = TextField;
-  views.TracksInput = TracksInput;
+  views.CharacterCount = CharacterCount;
+  views.SelectStyle    = SelectStyle;
+  views.BoardSize      = BoardSize;
+  views.LetterSize     = LetterSize;
+  views.TextField      = TextField;
+  views.TracksInput    = TracksInput;
 
 })(signapp.views);
 
