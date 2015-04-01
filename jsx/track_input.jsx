@@ -46,14 +46,46 @@
           </div>
           {this.props.collection.map(this.showTracks)}
           <div className="add-remove">
-            <span className="add"><a href="#">+</a></span>
-            <span className="delete"><a href="#">-</a></span>
+            <AddTrack/>
+            <RemoveTrack/>
           </div>
           <SelectStyle/>
         </form>
       );
     }
   });// end trackinput
+
+  //add a track 
+  var AddTrack = React.createBackboneClass({
+
+    onAdd: function(e){
+
+    },
+
+    render: function(){
+      return (
+          <span className="add"><a href="#" onAdd={this.onAdd}>+</a></span>
+      );
+    }
+
+  });//end add track
+
+
+  //remove a track
+  var RemoveTrack = React.createBackboneClass({
+
+    onRemove: function(e){
+
+    },
+    
+    render: function(){
+      return (
+          <span className="delete"><a href="#" onRemove={this.onRemove}>-</a></span>
+      );
+    }
+
+  });//remove track
+
 
   //style selection
   var SelectStyle = React.createBackboneClass({

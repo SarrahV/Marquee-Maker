@@ -174,6 +174,8 @@
     }
   });// end wordview
 
+  views.WordView = WordView;
+
 })(signapp.views); // end function
 
 
@@ -229,14 +231,46 @@
           ), 
           this.props.collection.map(this.showTracks), 
           React.createElement("div", {className: "add-remove"}, 
-            React.createElement("span", {className: "add"}, React.createElement("a", {href: "#"}, "+")), 
-            React.createElement("span", {className: "delete"}, React.createElement("a", {href: "#"}, "-"))
+            React.createElement(AddTrack, null), 
+            React.createElement(RemoveTrack, null)
           ), 
           React.createElement(SelectStyle, null)
         )
       );
     }
   });// end trackinput
+
+  //add a track 
+  var AddTrack = React.createBackboneClass({
+
+    onAdd: function(e){
+
+    },
+
+    render: function(){
+      return (
+          React.createElement("span", {className: "add"}, React.createElement("a", {href: "#", onAdd: this.onAdd}, "+"))
+      );
+    }
+
+  });//end add track
+
+
+  //remove a track
+  var RemoveTrack = React.createBackboneClass({
+
+    onRemove: function(e){
+
+    },
+    
+    render: function(){
+      return (
+          React.createElement("span", {className: "delete"}, React.createElement("a", {href: "#", onRemove: this.onRemove}, "-"))
+      );
+    }
+
+  });//remove track
+
 
   //style selection
   var SelectStyle = React.createBackboneClass({

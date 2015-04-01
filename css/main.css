@@ -9,10 +9,11 @@ body {
 }
 header {
   background: #4cb1e0;
+  padding-bottom: 5px;
 }
 header .logo {
   font-size: 18px;
-  margin: 0 25px 0 25px;
+  margin: 5px 25px 0 25px;
   font-family: 'Anton', sans-serif;
   display: inline-block;
 }
@@ -44,10 +45,10 @@ aside {
   float: left;
   height: auto;
   width: 300px;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.5);
 }
 aside .textfield input {
-  width: 50%;
+  width: 75%;
   background: rgba(76, 177, 224, 0.4);
   border: 1px solid #789;
   padding: 5px;
