@@ -205,7 +205,7 @@
       sentence = sentence.substr(0, this.props.maxChars);
       this.setState({sentence: sentence});
       this.props.model.set("sentence", sentence);
-      //call charcount here???
+
     }, 
 
     render: function(){
@@ -239,7 +239,7 @@
     //each textfield represents one model
     showTracks: function(model, index){
       return (
-        React.createElement(TextField, {model: model, key: index, maxChars: "10"})
+        React.createElement(TextField, {model: model, key: index, maxChars: "11"})
       )
     },
 
@@ -363,7 +363,6 @@
   //Count of characters used
   var CharacterCount = React.createBackboneClass({
 
-
     componentWillMount: function() {
       this.props.collection.on("change", function(){
 
@@ -398,35 +397,15 @@
       console.log(answer);
     },
 
-    // getChars: function() {
-    //   var counts = this.getCharCount();
-
-    //   // console.log("counts", counts);
-
-    //   return _.map(counts, function(count, letter) {
-    //     // console.log("count", count, "letter", letter);
-    //     return (
-    //       <div key={letter}>
-    //         <strong>{letter}</strong>
-    //         <span>{count}</span>
-    //       </div>
-    //     );
-    //   });
-    // },
-
     getChar: function(count, letter) {
       return (
         React.createElement("div", {key: letter}, 
-          "the letter ", React.createElement("strong", null, letter), " occured ", React.createElement("strong", null, count), " times"
+          React.createElement("strong", null, count), React.createElement("em", null, " of "), React.createElement("strong", null, letter)
         )
       );
     },
 
     render: function() {
-      // window.cc = this;
-      // console.log("rendering char count");
-      // console.log(this.getCharCount());
-      // window.rn = this.getChars();
       return (
         React.createElement("div", {className: "chars-count"}, 
           React.createElement("h3", null, "Character Count"), 
