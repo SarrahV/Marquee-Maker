@@ -6,6 +6,7 @@
 
 @media screen and (max-width: 480px) { }//end 480
 
+
   body {
     background-image: url(../images/mcd-gradient-dark.jpg);
     background-size: cover;
@@ -14,6 +15,10 @@
     padding: 0;
     color: #f1f1f1;
     font-family: 'Open Sans', sans-serif;
+    -webkit-transition:all .4s ease-in-out;
+    -moz-transition:all .5s ease-in-out;
+    -o-transition:all .4s ease-in-out;
+    transition:all .4s ease-in-out;
   }// end body
   header{
     background: #4cb1e0;
@@ -53,27 +58,26 @@
     }// end logged-in
   }// end twitter login
   aside {
-    @media only screen and (min-width: 1100px) { 
-      margin-left: 25px;
+     margin-left: 25px;
       height: auto;
       width: 325px;
-    }//end 1100
-    @media screen and (min-width: 860px) { 
-      margin-left: 15px;
+    // @media only screen and (max-width: 1300px) { 
+    //   margin-left: 25px;
+    //   height: auto;
+    //   width: 325px;
+    // }//end 1100
+    @media screen and (max-width: 860px) { 
       height: auto;
       width: 300px;
     }//end 860
-    @media screen and (max-width: 650px) { 
-      margin: 0 auto 0 auto;
+    @media screen and (min-width: 650px) { 
       height: auto;
       width: 300px;
     }//end 650
     @media screen and (max-width: 480px) { 
-      margin: 0 auto 0 auto;
       height: auto;
       width: 400px;
     }//end 480
-    width: 325px;
     display: inline-block;
     background: rgba(49,126,197,0.90);
     border-radius: 0 0 7px 7px;
@@ -99,8 +103,9 @@
     }// end text-field
     form {
       .add-remove {
-        //width: 300px;
-        margin-left: 50px;
+        width: 75%;
+        padding: 10px;
+        margin: 0 auto;
           a:link {
             color: #fff;
             font-size: 1.5em;
@@ -113,31 +118,34 @@
           } // end visited
           .add {
             float: left;
-            margin-right: 175px;
           }// end add
           .delete {
-            float: left;
+            float: right;
           }// end delete
       }//end add-remove
-      .board-width {
-        float: left;
-        margin: 20px 45px 25px 35px; 
-        text-align: center;
-        h3 {
-          font-size: .9em;
-          font-weight: normal;
-        }// end h3
-      }// end board-width
-      .letter-height {
-        float: left;
-        margin-top: 20px;
-        text-align: center;
-        h3 {
-          font-size: .9em;
-          font-weight: normal;
-        }// end h3
-      }// end letter-height
-
+      .size{
+        width: 75%;
+        padding: 10px;
+        margin: 0 auto;
+        .board-width {
+          float: left;
+          text-align: center;
+          margin-bottom: 20px;
+          h3 {
+            font-size: .9em;
+            font-weight: normal;
+          }// end h3
+        }// end board-width
+        .letter-height {
+          float: right;
+          text-align: center;
+          margin-bottom: 20px;
+          h3 {
+            font-size: .9em;
+            font-weight: normal;
+          }// end h3
+        }// end letter-height
+        }//end size
       ::-webkit-input-placeholder {
         color: #f1f1f1;
       }
@@ -159,17 +167,19 @@
 
   .main {
     float:right;
-    @media only screen and (min-width: 1100px) { 
-      width: 700px;
-    }//end 1100
+    margin: 0 auto 0 auto;
     @media screen and (min-width: 860px) { 
-      width: 700px;
+      width: ~"calc(100% - 325px)";
     }//end 860
+    @media screen and (max-width: 860px) { 
+      width: 100%;
+    }//end 650
     @media screen and (max-width: 650px) { 
-      width: 500px;
+      width: 100%;
     }//end 650
     @media screen and (max-width: 480px) { 
-      width: 480px;
+      //width: 480px;
+      width: 100%;
     }//end 480*/
   }// end main
 
@@ -378,7 +388,6 @@
           font-style: italic;
         }// end h3
   }// end chars count
-  
 
 
 

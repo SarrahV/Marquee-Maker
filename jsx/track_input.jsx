@@ -87,9 +87,9 @@
 
     render: function(){
       return (
-          <span className="add">
+          <button className="add">
             <a href="#" onClick={this.onAdd}>+</a>
-          </span>
+          </button>
       );
     }
 
@@ -106,9 +106,9 @@
     
     render: function(){
       return (
-          <span className="delete">
+          <button className="delete">
             <a href="#" onClick={this.onRemove}>-</a>
-          </span>
+          </button>
       );
     }
 

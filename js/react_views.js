@@ -272,7 +272,7 @@
 
     render: function(){
       return (
-          React.createElement("span", {className: "add"}, 
+          React.createElement("button", {className: "add"}, 
             React.createElement("a", {href: "#", onClick: this.onAdd}, "+")
           )
       );
@@ -291,7 +291,7 @@
     
     render: function(){
       return (
-          React.createElement("span", {className: "delete"}, 
+          React.createElement("button", {className: "delete"}, 
             React.createElement("a", {href: "#", onClick: this.onRemove}, "-")
           )
       );
