@@ -1,12 +1,3 @@
-@media only screen and (min-width: 1100px) { }//end 1100
-
-@media screen and (max-width: 860px) { }//end 860
-
-@media screen and (max-width: 650px) { }//end 650
-
-@media screen and (max-width: 480px) { }//end 480
-
-
   body {
     background-image: url(../images/mcd-gradient-dark.jpg);
     background-size: cover;
@@ -58,9 +49,9 @@
     }// end logged-in
   }// end twitter login
   aside {
-     margin-left: 25px;
-      height: auto;
-      width: 325px;
+    margin: 0 0 25px 25px;
+    height: auto;
+    width: 325px;
     // @media only screen and (max-width: 1300px) { 
     //   margin-left: 25px;
     //   height: auto;
@@ -106,22 +97,43 @@
         width: 75%;
         padding: 10px;
         margin: 0 auto;
-          a:link {
-            color: #fff;
-            font-size: 1.5em;
-            text-decoration: none;
-          }// end add-remove
-          a:visited {
-            color: #fff;
-            font-size: 1.5em;
-            text-decoration: none;
-          } // end visited
           .add {
             float: left;
           }// end add
           .delete {
             float: right;
           }// end delete
+          span{ 
+            a:link {
+            background-color:#4cb1e0;
+            text-decoration: none;
+            padding: 2px 15px;
+            font-size:1em;
+            border: 1px solid #03469b;
+            color: #fafafa;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 3px;
+            box-shadow: inset 0px 2px 2px rgba(255,255,255,.2);
+            -webkit-box-shadow: inset 0px 2px 2px rgba(255,255,255,.2);
+            -moz-box-shadow: inset 0px 2px 2px rgba(255,255,255,.2);
+            }
+            a:visited {
+              color: #fafafa;
+              outline: none;
+              border: 1px solid #03469b;
+            }
+            a:hover {
+              color: #fafafa;
+              outline: none;
+              border: 1px solid #abc;
+            }
+            a:active {
+              color: #03469b;
+              outline: none;
+              border: 1px solid #03469b;
+            }
+        }// end span
       }//end add-remove
       .size{
         width: 75%;
@@ -380,13 +392,45 @@
     }
   }// end style
   .chars-count {
-    padding: 25px;
+    margin: 0 auto;
+    padding: 25px 0;
     width: 75%;
     height: 100%;
     h3 {
-          font-size: .9em;
-          font-style: italic;
-        }// end h3
+      font-size: .9em;
+      font-weight: normal;
+      margin-bottom: 0px;
+    }// end h3
+    hr {
+      border: 0;
+      height: 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      width: 100%;
+    }
+    .total-chars {
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.10);
+      color: #03469b;
+      font-weight: bold;
+      text-align: center;
+        &:nth-child(even) {
+          background-color: rgba(255, 255, 255, 0.25);
+        }
+        &:first-child {
+          border-radius: 3px 3px 0 0;
+        }
+        &:last-child {
+          border-radius: 0 0 3px 3px;
+        }
+    }
+    .count {
+      padding-left: 5px;
+    }
+     .letter{
+      padding-right: 5px;
+      padding-left: 25px;
+    }
   }// end chars count
 
 

@@ -87,9 +87,9 @@
 
     render: function(){
       return (
-          <button className="add">
+          <span className="add">
             <a href="#" onClick={this.onAdd}>+</a>
-          </button>
+          </span>
       );
     }
 
@@ -106,9 +106,9 @@
     
     render: function(){
       return (
-          <button className="delete">
-            <a href="#" onClick={this.onRemove}>-</a>
-          </button>
+            <span className="delete">
+              <a href="#" onClick={this.onRemove}>-</a>
+            </span>
       );
     }
 
@@ -198,6 +198,7 @@
       var sentences = this.props.collection.pluck("sentence"); 
       var letters = sentences.join("");
 
+      letters = letters.toUpperCase();
       letters = letters.replace(/ /g, "");
       letters = letters.split("");
 
@@ -209,13 +210,13 @@
       });
 
       return answer;
-      console.log(answer);
     },
 
     getChar: function(count, letter) {
       return (
-        <div key={letter}>
-          <strong>{count}</strong><em> of </em><strong>{letter}</strong>
+        <div key={letter} className="total-chars">
+          <span className="count">{count}</span>
+          <span className="letter">{letter}</span>
         </div>
       );
     },
@@ -223,7 +224,8 @@
     render: function() {
       return (
         <div className="chars-count">
-          <h3>Character Count</h3>
+          <h3>Total Letters Needed</h3>
+          <hr/>
           <div>{_.map(this.state.charCounts, this.getChar)}</div>
         </div>
       )

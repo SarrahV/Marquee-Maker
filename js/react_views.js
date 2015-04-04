@@ -272,7 +272,7 @@
 
     render: function(){
       return (
-          React.createElement("button", {className: "add"}, 
+          React.createElement("span", {className: "add"}, 
             React.createElement("a", {href: "#", onClick: this.onAdd}, "+")
           )
       );
@@ -291,9 +291,9 @@
     
     render: function(){
       return (
-          React.createElement("button", {className: "delete"}, 
-            React.createElement("a", {href: "#", onClick: this.onRemove}, "-")
-          )
+            React.createElement("span", {className: "delete"}, 
+              React.createElement("a", {href: "#", onClick: this.onRemove}, "-")
+            )
       );
     }
 
@@ -383,6 +383,7 @@
       var sentences = this.props.collection.pluck("sentence"); 
       var letters = sentences.join("");
 
+      letters = letters.toUpperCase();
       letters = letters.replace(/ /g, "");
       letters = letters.split("");
 
@@ -394,13 +395,13 @@
       });
 
       return answer;
-      console.log(answer);
     },
 
     getChar: function(count, letter) {
       return (
-        React.createElement("div", {key: letter}, 
-          React.createElement("strong", null, count), React.createElement("em", null, " of "), React.createElement("strong", null, letter)
+        React.createElement("div", {key: letter, className: "total-chars"}, 
+          React.createElement("span", {className: "count"}, count), 
+          React.createElement("span", {className: "letter"}, letter)
         )
       );
     },
@@ -408,7 +409,8 @@
     render: function() {
       return (
         React.createElement("div", {className: "chars-count"}, 
-          React.createElement("h3", null, "Character Count"), 
+          React.createElement("h3", null, "Total Letters Needed"), 
+          React.createElement("hr", null), 
           React.createElement("div", null, _.map(this.state.charCounts, this.getChar))
         )
       )
