@@ -252,9 +252,9 @@ footer {
   color: #000;
   margin: 0;
   background-color: rgba(204, 204, 204, 0.25);
-  width: 40px;
+  width: 30px;
   height: 45.3px;
-  padding: 2px;
+  padding: 2px 2px 0 0;
   box-sizing: border-box;
   float: left;
   text-shadow: none;
@@ -330,7 +330,7 @@ footer {
   margin: 0 15px;
 }
 .style .condensed span {
-  font-family: standard2;
+  font-family: condensed;
   font-size: 2.4em;
   color: #000;
   margin: 0;
