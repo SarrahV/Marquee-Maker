@@ -47,7 +47,7 @@
     //take the sentence from the model
     getWord: function(word, index){
       return (
-        <WordView word={word} key={index}/>
+        <WordView word={word} key={index} className={this.props.model.get("cssClass")}/>
       )
     },
     //splits on each space to get the word
@@ -69,7 +69,7 @@
     // gets letter at the index, makes uppercase
     getLetter: function(letter, index){
       return (
-        <span key={index}>{letter.toUpperCase()}</span>
+        <span key={index} className={this.props.className}>{letter.toUpperCase()}</span>
       );
     },
     // splits word at the letterspace, maps it, then calls getletter 

@@ -10,6 +10,7 @@ body {
   -moz-transition: all 0.5s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
+  font-weight: bold;
 }
 header {
   background: #4cb1e0;
@@ -203,7 +204,7 @@ footer {
 }
 .wrap .can {
   margin: 40px auto 0;
-  width: 500px;
+  width: 749px;
   height: 100%;
   background-color: #fff;
   padding: 10px;
@@ -223,7 +224,7 @@ footer {
   padding: 0;
 }
 .wrap .can .face .tracks li {
-  height: 45.3px;
+  height: 60px;
   padding: 0 2px;
   border-top: 5px solid rgba(204, 204, 204, 0.25);
   border-bottom: 5px solid rgba(204, 204, 204, 0.25);
@@ -246,20 +247,27 @@ footer {
   box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 0.25);
 }
 .wrap .can .face .tracks span {
-  font-family: standard2;
-  font-size: 2.4em;
+  font-size: 55px;
   color: #000;
   margin: 0;
+  padding: 0;
   background-color: rgba(204, 204, 204, 0.25);
-  width: 30px;
-  height: 45.3px;
-  padding: 2px 2px 0 0;
-  box-sizing: border-box;
   float: left;
   text-shadow: none;
   -webkit-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+}
+.wrap .stand {
+  font-family: standard2;
+  letter-spacing: -3px;
+}
+.wrap .cond {
+  font-family: condensed;
+  letter-spacing: -5px;
+}
+.wrap .mod {
+  font-family: standard2;
 }
 .wrap .word {
   margin-left: 10px;
@@ -277,7 +285,7 @@ footer {
   background-image: -webkit-repeating-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 6%, rgba(255, 255, 255, 0.1) 7.5%), -webkit-repeating-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 4%, rgba(0, 0, 0, 0.03) 4.5%), -webkit-repeating-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 1.2%, rgba(255, 255, 255, 0.15) 2%), linear-gradient(45deg, #c7c7c7 0%, #e6e6e6 47%, #c7c7c7 53%, #b3b3b3 100%);
 }
 .pole {
-  width: 32px;
+  width: 38px;
   height: 700px;
   margin: 0 auto;
   -webkit-box-shadow: inset 0px 12px 1px 1px rgba(0, 0, 0, 0.41);

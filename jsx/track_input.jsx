@@ -1,6 +1,6 @@
 (function(views){
 
-  // textfield 
+//-----------------------------------------------------textfield 
   var TextField = React.createBackboneClass({
 
     getDefaultProps: function() {
@@ -48,7 +48,7 @@
   });// end textfield
 
 
-  // tracks form
+//-----------------------------------------------------tracks form
   var TracksInput = React.createBackboneClass({
 
     //each textfield represents one model
@@ -62,22 +62,22 @@
       return (
         <form>
           <div className="size">
-            <BoardSize/>
-            <LetterSize/>
+            <BoardSize collection={this.props.collection}/>
+            <LetterSize collection={this.props.collection}/>
           </div>
           {this.props.collection.map(this.showTracks)}
           <div className="add-remove">
             <AddTrack collection={this.props.collection}/>
             <RemoveTrack collection={this.props.collection}/>
           </div>
-          <SelectStyle/>
+          <SelectStyle collection={this.props.collection}/>
           <CharacterCount collection={this.props.collection}/>
         </form>
       );
     }
   });// end trackinput
 
-  //add a track 
+//-----------------------------------------------------add a track 
   var AddTrack = React.createBackboneClass({
 
     onAdd: function(e){
@@ -96,7 +96,7 @@
   });//end add track
 
 
-  //remove a track
+//-----------------------------------------------------remove a track
   var RemoveTrack = React.createBackboneClass({
 
     onRemove: function(e){
@@ -115,22 +115,33 @@
   });//remove track
 
 
-  //style selection
+//-----------------------------------------------------style selection
+//break down into three different functions?
+
   var SelectStyle = React.createBackboneClass({
+
+    onClick: function(className, e){
+      e.preventDefault();
+      this.props.collection.each(function(model){
+
+        model.set("cssClass", className);
+
+      });
+    },
 
     render: function(){
       return (
         <div className="style">
           <div className="standard">
-            <a href="#"><span>C</span></a>
+            <a href="#" onClick={this.onClick.bind(this, "stand")}><span>C</span></a>
             <h3>Standard</h3>
           </div>
           <div className="condensed">
-            <a href="#"><span>C</span></a>
+            <a href="#" onClick={this.onClick.bind(this, "cond")}><span>C</span></a>
             <h3>Condensed</h3>
           </div>
           <div className="modern">
-            <a href="#"><span>C</span></a>
+            <a href="#" onClick={this.onClick.bind(this, "mod")}><span>C</span></a>
             <h3>Modern</h3>
           </div>
         </div>
@@ -139,7 +150,7 @@
 
   });
 
-  //Board width and height selection
+//----------------------------------------------------- Board width and height selection
   var BoardSize = React.createBackboneClass({
 
     render: function(){
@@ -147,8 +158,6 @@
         <div className="board-width">
           <h3>Board Width</h3>
           <select>
-            <option value="sixty">60 in</option>
-            <option value="seventy-two">72 in</option>
             <option value="eighty-eight">88 in</option>
             <option value="ninety-six">96 in</option>
             <option value="one-twenty">120 in</option>
@@ -158,7 +167,7 @@
     }
   });
 
-  //Letter height selection
+//----------------------------------------------------- Letter height selection
   var LetterSize = React.createBackboneClass({
 
     render: function(){
@@ -175,7 +184,7 @@
     }
   });
 
-  //Count of characters used
+//----------------------------------------------------- Count of characters used
   var CharacterCount = React.createBackboneClass({
 
     componentWillMount: function() {

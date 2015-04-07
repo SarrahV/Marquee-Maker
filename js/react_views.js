@@ -138,7 +138,7 @@
     //take the sentence from the model
     getWord: function(word, index){
       return (
-        React.createElement(WordView, {word: word, key: index})
+        React.createElement(WordView, {word: word, key: index, className: this.props.model.get("cssClass")})
       )
     },
     //splits on each space to get the word
@@ -160,7 +160,7 @@
     // gets letter at the index, makes uppercase
     getLetter: function(letter, index){
       return (
-        React.createElement("span", {key: index}, letter.toUpperCase())
+        React.createElement("span", {key: index, className: this.props.className}, letter.toUpperCase())
       );
     },
     // splits word at the letterspace, maps it, then calls getletter 
@@ -185,7 +185,7 @@
 
 (function(views){
 
-  // textfield 
+//-----------------------------------------------------textfield 
   var TextField = React.createBackboneClass({
 
     getDefaultProps: function() {
@@ -233,7 +233,7 @@
   });// end textfield
 
 
-  // tracks form
+//-----------------------------------------------------tracks form
   var TracksInput = React.createBackboneClass({
 
     //each textfield represents one model
@@ -247,22 +247,22 @@
       return (
         React.createElement("form", null, 
           React.createElement("div", {className: "size"}, 
-            React.createElement(BoardSize, null), 
-            React.createElement(LetterSize, null)
+            React.createElement(BoardSize, {collection: this.props.collection}), 
+            React.createElement(LetterSize, {collection: this.props.collection})
           ), 
           this.props.collection.map(this.showTracks), 
           React.createElement("div", {className: "add-remove"}, 
             React.createElement(AddTrack, {collection: this.props.collection}), 
             React.createElement(RemoveTrack, {collection: this.props.collection})
           ), 
-          React.createElement(SelectStyle, null), 
+          React.createElement(SelectStyle, {collection: this.props.collection}), 
           React.createElement(CharacterCount, {collection: this.props.collection})
         )
       );
     }
   });// end trackinput
 
-  //add a track 
+//-----------------------------------------------------add a track 
   var AddTrack = React.createBackboneClass({
 
     onAdd: function(e){
@@ -281,7 +281,7 @@
   });//end add track
 
 
-  //remove a track
+//-----------------------------------------------------remove a track
   var RemoveTrack = React.createBackboneClass({
 
     onRemove: function(e){
@@ -300,22 +300,33 @@
   });//remove track
 
 
-  //style selection
+//-----------------------------------------------------style selection
+//break down into three different functions?
+
   var SelectStyle = React.createBackboneClass({
+
+    onClick: function(className, e){
+      e.preventDefault();
+      this.props.collection.each(function(model){
+
+        model.set("cssClass", className);
+
+      });
+    },
 
     render: function(){
       return (
         React.createElement("div", {className: "style"}, 
           React.createElement("div", {className: "standard"}, 
-            React.createElement("a", {href: "#"}, React.createElement("span", null, "C")), 
+            React.createElement("a", {href: "#", onClick: this.onClick.bind(this, "stand")}, React.createElement("span", null, "C")), 
             React.createElement("h3", null, "Standard")
           ), 
           React.createElement("div", {className: "condensed"}, 
-            React.createElement("a", {href: "#"}, React.createElement("span", null, "C")), 
+            React.createElement("a", {href: "#", onClick: this.onClick.bind(this, "cond")}, React.createElement("span", null, "C")), 
             React.createElement("h3", null, "Condensed")
           ), 
           React.createElement("div", {className: "modern"}, 
-            React.createElement("a", {href: "#"}, React.createElement("span", null, "C")), 
+            React.createElement("a", {href: "#", onClick: this.onClick.bind(this, "mod")}, React.createElement("span", null, "C")), 
             React.createElement("h3", null, "Modern")
           )
         )
@@ -324,7 +335,7 @@
 
   });
 
-  //Board width and height selection
+//----------------------------------------------------- Board width and height selection
   var BoardSize = React.createBackboneClass({
 
     render: function(){
@@ -332,8 +343,6 @@
         React.createElement("div", {className: "board-width"}, 
           React.createElement("h3", null, "Board Width"), 
           React.createElement("select", null, 
-            React.createElement("option", {value: "sixty"}, "60 in"), 
-            React.createElement("option", {value: "seventy-two"}, "72 in"), 
             React.createElement("option", {value: "eighty-eight"}, "88 in"), 
             React.createElement("option", {value: "ninety-six"}, "96 in"), 
             React.createElement("option", {value: "one-twenty"}, "120 in")
@@ -343,7 +352,7 @@
     }
   });
 
-  //Letter height selection
+//----------------------------------------------------- Letter height selection
   var LetterSize = React.createBackboneClass({
 
     render: function(){
@@ -360,7 +369,7 @@
     }
   });
 
-  //Count of characters used
+//----------------------------------------------------- Count of characters used
   var CharacterCount = React.createBackboneClass({
 
     componentWillMount: function() {

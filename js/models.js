@@ -3,7 +3,8 @@
   //----------------------------------------- ind track
   var SignTrack = Backbone.Model.extend({
     defaults: {
-      sentence: " "
+      sentence: " ",
+      cssClass: "stand"
     }
   });
 
