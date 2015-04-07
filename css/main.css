@@ -133,25 +133,19 @@ aside form .add-remove span a:active {
 aside form .size {
   width: 75%;
   padding: 10px;
-  margin: 0 auto;
+  margin: 20px auto;
 }
-aside form .size .board-width {
+aside form .size h3 {
+  font-size: .9em;
+  font-weight: normal;
+  float: left;
+  margin: 2px 10px 0 0;
+  padding: 0;
+}
+aside form .size .letter-height {
   float: left;
   text-align: center;
   margin-bottom: 20px;
-}
-aside form .size .board-width h3 {
-  font-size: .9em;
-  font-weight: normal;
-}
-aside form .size .letter-height {
-  float: right;
-  text-align: center;
-  margin-bottom: 20px;
-}
-aside form .size .letter-height h3 {
-  font-size: .9em;
-  font-weight: normal;
 }
 aside form ::-webkit-input-placeholder {
   color: #f1f1f1;
@@ -204,7 +198,7 @@ footer {
 }
 .wrap .can {
   margin: 40px auto 0;
-  width: 749px;
+  width: 604px;
   height: 100%;
   background-color: #fff;
   padding: 10px;
@@ -310,6 +304,9 @@ footer {
 }
 .style h3 {
   font-size: .5em;
+}
+.style .selected {
+  border: 1px solid red;
 }
 .style .standard {
   text-align: center;

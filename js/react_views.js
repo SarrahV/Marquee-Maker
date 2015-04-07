@@ -236,6 +236,21 @@
 //-----------------------------------------------------tracks form
   var TracksInput = React.createBackboneClass({
 
+    getInitialState: function() {
+      return {
+        letterSize: "6 on 7",
+        style: "stand"
+      }
+    },
+
+    onSizeChange: function(e) {
+      this.setState({letterSize: e.target.value});
+    },
+
+    setStyle: function(styleName) {
+      this.setState({style: styleName});
+    },
+
     //each textfield represents one model
     showTracks: function(model, index){
       return (
@@ -247,16 +262,16 @@
       return (
         React.createElement("form", null, 
           React.createElement("div", {className: "size"}, 
-            React.createElement(BoardSize, {collection: this.props.collection}), 
-            React.createElement(LetterSize, {collection: this.props.collection})
+            React.createElement(LetterSize, {onChange: this.onSizeChange, selected: this.state.letterSize, collection: this.props.collection})
           ), 
           this.props.collection.map(this.showTracks), 
           React.createElement("div", {className: "add-remove"}, 
             React.createElement(AddTrack, {collection: this.props.collection}), 
             React.createElement(RemoveTrack, {collection: this.props.collection})
           ), 
-          React.createElement(SelectStyle, {collection: this.props.collection}), 
-          React.createElement(CharacterCount, {collection: this.props.collection})
+          React.createElement(SelectStyle, {selected: this.state.style, onStyle: this.setStyle, collection: this.props.collection}), 
+          React.createElement(CharacterCount, {style: this.state.style, letterSize: this.state.letterSize, collection: this.props.collection}), 
+          React.createElement(BuyButton, {collection: this.props.collection})
         )
       );
     }
@@ -301,7 +316,6 @@
 
 
 //-----------------------------------------------------style selection
-//break down into three different functions?
 
   var SelectStyle = React.createBackboneClass({
 
@@ -312,20 +326,21 @@
         model.set("cssClass", className);
 
       });
+      this.props.onStyle(className);
     },
 
     render: function(){
       return (
         React.createElement("div", {className: "style"}, 
-          React.createElement("div", {className: "standard"}, 
+          React.createElement("div", {className: this.props.selected === "stand" ? "standard selected" : "standard"}, 
             React.createElement("a", {href: "#", onClick: this.onClick.bind(this, "stand")}, React.createElement("span", null, "C")), 
             React.createElement("h3", null, "Standard")
           ), 
-          React.createElement("div", {className: "condensed"}, 
+          React.createElement("div", {className: this.props.selected === "cond" ? "condensed selected" : "condensed"}, 
             React.createElement("a", {href: "#", onClick: this.onClick.bind(this, "cond")}, React.createElement("span", null, "C")), 
             React.createElement("h3", null, "Condensed")
           ), 
-          React.createElement("div", {className: "modern"}, 
+          React.createElement("div", {className: this.props.selected === "mod" ? "modern selected" : "modern"}, 
             React.createElement("a", {href: "#", onClick: this.onClick.bind(this, "mod")}, React.createElement("span", null, "C")), 
             React.createElement("h3", null, "Modern")
           )
@@ -335,34 +350,21 @@
 
   });
 
-//----------------------------------------------------- Board width and height selection
-  var BoardSize = React.createBackboneClass({
-
-    render: function(){
-      return (
-        React.createElement("div", {className: "board-width"}, 
-          React.createElement("h3", null, "Board Width"), 
-          React.createElement("select", null, 
-            React.createElement("option", {value: "eighty-eight"}, "88 in"), 
-            React.createElement("option", {value: "ninety-six"}, "96 in"), 
-            React.createElement("option", {value: "one-twenty"}, "120 in")
-          )
-        )
-      )
-    }
-  });
-
 //----------------------------------------------------- Letter height selection
   var LetterSize = React.createBackboneClass({
+
+    onChange: function(e){
+      this.props.onChange(e);
+    },
 
     render: function(){
       return (
         React.createElement("div", {className: "letter-height"}, 
           React.createElement("h3", null, "Letter Height"), 
-          React.createElement("select", null, 
-            React.createElement("option", {value: "six"}, "5 in"), 
-            React.createElement("option", {value: "seven"}, "7 in"), 
-            React.createElement("option", {value: "ten"}, "10 in")
+          React.createElement("select", {onChange: this.onChange}, 
+            React.createElement("option", {selected: this.props.selected === "4 on 5", value: "4 on 5"}, "5 in Panel"), 
+            React.createElement("option", {selected: this.props.selected === "6 on 7", value: "6 on 7"}, "7 in Panel"), 
+            React.createElement("option", {selected: this.props.selected === "8 on 10", value: "8 on 10"}, "10 in Panel")
           )
         )
       )
@@ -415,21 +417,121 @@
       );
     },
 
+    buyNow: function(e) {
+      e.preventDefault();
+
+      var letters = _.reduce(this.state.charCounts, function(arr, count, letter){
+        _.each(_.range(count), function(){
+          arr.push(letter);
+        });
+        return arr;
+      }, []);
+
+      var items = [];
+
+      _.each(letters, function(letter) {
+
+        var obj = _.find(letterOrderData, function(orderData){
+          if (orderData.style !== this.props.style) {
+            return false
+          }
+          if (orderData.size !== this.props.letterSize) {
+            return false
+          }
+          if (orderData.char !== letter) {
+            return false
+          }
+          return true;
+        }, this);
+
+        items.push(obj["variant-id"]);
+
+      }, this);
+
+      items = _.compact(items);
+
+      if (items.length) {
+        this.sendToCart(items);
+      } else {
+        alert("Nothing to add to cart");
+      }
+    },
+
+    sendToCart: function(items) {
+      var f = document.createElement('form'); 
+      f.style.display = 'none'; 
+      
+      document.body.appendChild(f); 
+      
+      f.method = 'POST'; 
+      f.action = "http://www.nationalreaderboard.com/cart/add";
+      
+      items.forEach(function(itemID){
+        var v = document.createElement('input'); 
+        v.setAttribute('type', 'hidden'); 
+        v.setAttribute('name', 'id[]'); 
+        v.setAttribute('value', itemID); 
+        f.appendChild(v);
+      });
+
+      f.submit();
+    },
+
     render: function() {
       return (
         React.createElement("div", {className: "chars-count"}, 
           React.createElement("h3", null, "Total Letters Needed"), 
           React.createElement("hr", null), 
-          React.createElement("div", null, _.map(this.state.charCounts, this.getChar))
+          React.createElement("div", null, _.map(this.state.charCounts, this.getChar)), 
+          React.createElement("button", {onClick: this.buyNow}, "click")
         )
       )
     }
 
   });
+
+var BuyButton = React.createBackboneClass({
+
+  onClick: function() {
+    e.preventDefault();
+    //get the sentence
+    //match characters to json variant
+    var items = [];
+    
+    var f = document.createElement('form'); 
+    f.style.display = 'none'; 
+    
+    document.body.appendChild(f); 
+    
+    f.method = 'POST'; 
+    f.action = "http://www.nationalreaderboard.com/cart/add";
+    
+    items.forEach(function(itemID){
+      var v = document.createElement('input'); 
+      v.setAttribute('type', 'hidden'); 
+      v.setAttribute('name', 'id[]'); 
+      v.setAttribute('value', itemID); 
+      f.appendChild(v);
+    });
+
+    f.submit();
+
+  },
+
+  render: function() {
+
+    return (
+    React.createElement("button", null, 
+      React.createElement("a", {href: "http://www.nationalreaderboard.com/cart/add", 
+      onClick: this.onClick}, "BUY NOW")
+    )
+    )
+  }
+
+});
   
   views.CharacterCount = CharacterCount;
   views.SelectStyle    = SelectStyle;
-  views.BoardSize      = BoardSize;
   views.LetterSize     = LetterSize;
   views.TextField      = TextField;
   views.TracksInput    = TracksInput;

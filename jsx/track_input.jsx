@@ -51,6 +51,21 @@
 //-----------------------------------------------------tracks form
   var TracksInput = React.createBackboneClass({
 
+    getInitialState: function() {
+      return {
+        letterSize: "6 on 7",
+        style: "stand"
+      }
+    },
+
+    onSizeChange: function(e) {
+      this.setState({letterSize: e.target.value});
+    },
+
+    setStyle: function(styleName) {
+      this.setState({style: styleName});
+    },
+
     //each textfield represents one model
     showTracks: function(model, index){
       return (
@@ -62,16 +77,16 @@
       return (
         <form>
           <div className="size">
-            <BoardSize collection={this.props.collection}/>
-            <LetterSize collection={this.props.collection}/>
+            <LetterSize onChange={this.onSizeChange} selected={this.state.letterSize} collection={this.props.collection}/>
           </div>
           {this.props.collection.map(this.showTracks)}
           <div className="add-remove">
             <AddTrack collection={this.props.collection}/>
             <RemoveTrack collection={this.props.collection}/>
           </div>
-          <SelectStyle collection={this.props.collection}/>
-          <CharacterCount collection={this.props.collection}/>
+          <SelectStyle selected={this.state.style} onStyle={this.setStyle} collection={this.props.collection}/>
+          <CharacterCount style={this.state.style} letterSize={this.state.letterSize} collection={this.props.collection}/>
+          <BuyButton collection={this.props.collection}/>
         </form>
       );
     }
@@ -116,7 +131,6 @@
 
 
 //-----------------------------------------------------style selection
-//break down into three different functions?
 
   var SelectStyle = React.createBackboneClass({
 
@@ -127,20 +141,21 @@
         model.set("cssClass", className);
 
       });
+      this.props.onStyle(className);
     },
 
     render: function(){
       return (
         <div className="style">
-          <div className="standard">
+          <div className={this.props.selected === "stand" ? "standard selected" : "standard"}>
             <a href="#" onClick={this.onClick.bind(this, "stand")}><span>C</span></a>
             <h3>Standard</h3>
           </div>
-          <div className="condensed">
+          <div className={this.props.selected === "cond" ? "condensed selected" : "condensed"}>
             <a href="#" onClick={this.onClick.bind(this, "cond")}><span>C</span></a>
             <h3>Condensed</h3>
           </div>
-          <div className="modern">
+          <div className={this.props.selected === "mod" ? "modern selected" : "modern"}>
             <a href="#" onClick={this.onClick.bind(this, "mod")}><span>C</span></a>
             <h3>Modern</h3>
           </div>
@@ -150,34 +165,21 @@
 
   });
 
-//----------------------------------------------------- Board width and height selection
-  var BoardSize = React.createBackboneClass({
-
-    render: function(){
-      return (
-        <div className="board-width">
-          <h3>Board Width</h3>
-          <select>
-            <option value="eighty-eight">88 in</option>
-            <option value="ninety-six">96 in</option>
-            <option value="one-twenty">120 in</option>
-          </select>
-        </div>
-      )
-    }
-  });
-
 //----------------------------------------------------- Letter height selection
   var LetterSize = React.createBackboneClass({
+
+    onChange: function(e){
+      this.props.onChange(e);
+    },
 
     render: function(){
       return (
         <div className="letter-height">
           <h3>Letter Height</h3>
-          <select>
-            <option value="six">5 in</option>
-            <option value="seven">7 in</option>
-            <option value="ten">10 in</option>
+          <select onChange={this.onChange}>
+            <option selected={this.props.selected === "4 on 5"} value="4 on 5">5 in Panel</option>
+            <option selected={this.props.selected === "6 on 7"} value="6 on 7">7 in Panel</option>
+            <option selected={this.props.selected === "8 on 10"} value="8 on 10">10 in Panel</option>
           </select>
         </div>
       )
@@ -230,21 +232,121 @@
       );
     },
 
+    buyNow: function(e) {
+      e.preventDefault();
+
+      var letters = _.reduce(this.state.charCounts, function(arr, count, letter){
+        _.each(_.range(count), function(){
+          arr.push(letter);
+        });
+        return arr;
+      }, []);
+
+      var items = [];
+
+      _.each(letters, function(letter) {
+
+        var obj = _.find(letterOrderData, function(orderData){
+          if (orderData.style !== this.props.style) {
+            return false
+          }
+          if (orderData.size !== this.props.letterSize) {
+            return false
+          }
+          if (orderData.char !== letter) {
+            return false
+          }
+          return true;
+        }, this);
+
+        items.push(obj["variant-id"]);
+
+      }, this);
+
+      items = _.compact(items);
+
+      if (items.length) {
+        this.sendToCart(items);
+      } else {
+        alert("Nothing to add to cart");
+      }
+    },
+
+    sendToCart: function(items) {
+      var f = document.createElement('form'); 
+      f.style.display = 'none'; 
+      
+      document.body.appendChild(f); 
+      
+      f.method = 'POST'; 
+      f.action = "http://www.nationalreaderboard.com/cart/add";
+      
+      items.forEach(function(itemID){
+        var v = document.createElement('input'); 
+        v.setAttribute('type', 'hidden'); 
+        v.setAttribute('name', 'id[]'); 
+        v.setAttribute('value', itemID); 
+        f.appendChild(v);
+      });
+
+      f.submit();
+    },
+
     render: function() {
       return (
         <div className="chars-count">
           <h3>Total Letters Needed</h3>
           <hr/>
           <div>{_.map(this.state.charCounts, this.getChar)}</div>
+          <button onClick={this.buyNow}>click</button>
         </div>
       )
     }
 
   });
+
+var BuyButton = React.createBackboneClass({
+
+  onClick: function() {
+    e.preventDefault();
+    //get the sentence
+    //match characters to json variant
+    var items = [];
+    
+    var f = document.createElement('form'); 
+    f.style.display = 'none'; 
+    
+    document.body.appendChild(f); 
+    
+    f.method = 'POST'; 
+    f.action = "http://www.nationalreaderboard.com/cart/add";
+    
+    items.forEach(function(itemID){
+      var v = document.createElement('input'); 
+      v.setAttribute('type', 'hidden'); 
+      v.setAttribute('name', 'id[]'); 
+      v.setAttribute('value', itemID); 
+      f.appendChild(v);
+    });
+
+    f.submit();
+
+  },
+
+  render: function() {
+
+    return (
+    <button>
+      <a href="http://www.nationalreaderboard.com/cart/add" 
+      onClick={this.onClick}>BUY NOW</a>
+    </button>
+    )
+  }
+
+});
   
   views.CharacterCount = CharacterCount;
   views.SelectStyle    = SelectStyle;
-  views.BoardSize      = BoardSize;
   views.LetterSize     = LetterSize;
   views.TextField      = TextField;
   views.TracksInput    = TracksInput;
