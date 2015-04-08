@@ -13,7 +13,7 @@ body {
   font-weight: bold;
 }
 header {
-  background: #4cb1e0;
+  background-color: #03469b;
   padding-bottom: 5px;
   box-shadow: 1px 0px 5px #33373e;
   border-bottom: 1px solid #03469b;
@@ -187,7 +187,7 @@ aside form :-ms-input-placeholder {
 }
 footer {
   height: 50px;
-  background: #4cb1e0;
+  background-color: #03469b;
   box-shadow: 1px 0px 5px #33373e;
   border-top: 1px solid #03469b;
   clear: both;
@@ -225,6 +225,7 @@ footer {
   -webkit-box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 0.25);
   box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 0.25);
+  text-align: center;
 }
 .wrap .can .face .tracks li:first-child {
   border-top: 12px solid rgba(204, 204, 204, 0.25);
@@ -246,7 +247,6 @@ footer {
   margin: 0;
   padding: 0;
   background-color: rgba(204, 204, 204, 0.25);
-  float: left;
   text-shadow: none;
   -webkit-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
@@ -266,8 +266,8 @@ footer {
 .wrap .word {
   margin-left: 10px;
   margin-right: 10px;
-  height: 100%;
-  float: left;
+  line-height: 60px;
+  display: inline;
 }
 .wrap .metal {
   outline: none;
