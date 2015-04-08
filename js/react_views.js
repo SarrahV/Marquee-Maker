@@ -270,8 +270,7 @@
             React.createElement(RemoveTrack, {collection: this.props.collection})
           ), 
           React.createElement(SelectStyle, {selected: this.state.style, onStyle: this.setStyle, collection: this.props.collection}), 
-          React.createElement(CharacterCount, {style: this.state.style, letterSize: this.state.letterSize, collection: this.props.collection}), 
-          React.createElement(BuyButton, {collection: this.props.collection})
+          React.createElement(CharacterCount, {style: this.state.style, letterSize: this.state.letterSize, collection: this.props.collection})
         )
       );
     }
@@ -417,6 +416,15 @@
       );
     },
 
+    getBuyNowButton: function() {
+      if (_.values(this.state.charCounts).length) {
+        return React.createElement("button", {onClick: this.buyNow}, "Buy Now!");
+      }
+      else {
+        return false;
+      }
+    },
+
     buyNow: function(e) {
       e.preventDefault();
 
@@ -444,8 +452,10 @@
           return true;
         }, this);
 
-        items.push(obj["variant-id"]);
-
+        if (obj) {
+          items.push(obj["variant-id"]);
+        }
+        
       }, this);
 
       items = _.compact(items);
@@ -483,52 +493,12 @@
           React.createElement("h3", null, "Total Letters Needed"), 
           React.createElement("hr", null), 
           React.createElement("div", null, _.map(this.state.charCounts, this.getChar)), 
-          React.createElement("button", {onClick: this.buyNow}, "click")
+          this.getBuyNowButton()
         )
       )
     }
 
   });
-
-var BuyButton = React.createBackboneClass({
-
-  onClick: function() {
-    e.preventDefault();
-    //get the sentence
-    //match characters to json variant
-    var items = [];
-    
-    var f = document.createElement('form'); 
-    f.style.display = 'none'; 
-    
-    document.body.appendChild(f); 
-    
-    f.method = 'POST'; 
-    f.action = "http://www.nationalreaderboard.com/cart/add";
-    
-    items.forEach(function(itemID){
-      var v = document.createElement('input'); 
-      v.setAttribute('type', 'hidden'); 
-      v.setAttribute('name', 'id[]'); 
-      v.setAttribute('value', itemID); 
-      f.appendChild(v);
-    });
-
-    f.submit();
-
-  },
-
-  render: function() {
-
-    return (
-    React.createElement("button", null, 
-      React.createElement("a", {href: "http://www.nationalreaderboard.com/cart/add", 
-      onClick: this.onClick}, "BUY NOW")
-    )
-    )
-  }
-
-});
   
   views.CharacterCount = CharacterCount;
   views.SelectStyle    = SelectStyle;

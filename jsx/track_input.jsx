@@ -86,7 +86,6 @@
           </div>
           <SelectStyle selected={this.state.style} onStyle={this.setStyle} collection={this.props.collection}/>
           <CharacterCount style={this.state.style} letterSize={this.state.letterSize} collection={this.props.collection}/>
-          <BuyButton collection={this.props.collection}/>
         </form>
       );
     }
@@ -232,6 +231,15 @@
       );
     },
 
+    getBuyNowButton: function() {
+      if (_.values(this.state.charCounts).length) {
+        return <button onClick={this.buyNow}>Buy Now!</button>;
+      }
+      else {
+        return false;
+      }
+    },
+
     buyNow: function(e) {
       e.preventDefault();
 
@@ -259,8 +267,10 @@
           return true;
         }, this);
 
-        items.push(obj["variant-id"]);
-
+        if (obj) {
+          items.push(obj["variant-id"]);
+        }
+        
       }, this);
 
       items = _.compact(items);
@@ -298,52 +308,12 @@
           <h3>Total Letters Needed</h3>
           <hr/>
           <div>{_.map(this.state.charCounts, this.getChar)}</div>
-          <button onClick={this.buyNow}>click</button>
+          {this.getBuyNowButton()}
         </div>
       )
     }
 
   });
-
-var BuyButton = React.createBackboneClass({
-
-  onClick: function() {
-    e.preventDefault();
-    //get the sentence
-    //match characters to json variant
-    var items = [];
-    
-    var f = document.createElement('form'); 
-    f.style.display = 'none'; 
-    
-    document.body.appendChild(f); 
-    
-    f.method = 'POST'; 
-    f.action = "http://www.nationalreaderboard.com/cart/add";
-    
-    items.forEach(function(itemID){
-      var v = document.createElement('input'); 
-      v.setAttribute('type', 'hidden'); 
-      v.setAttribute('name', 'id[]'); 
-      v.setAttribute('value', itemID); 
-      f.appendChild(v);
-    });
-
-    f.submit();
-
-  },
-
-  render: function() {
-
-    return (
-    <button>
-      <a href="http://www.nationalreaderboard.com/cart/add" 
-      onClick={this.onClick}>BUY NOW</a>
-    </button>
-    )
-  }
-
-});
   
   views.CharacterCount = CharacterCount;
   views.SelectStyle    = SelectStyle;
