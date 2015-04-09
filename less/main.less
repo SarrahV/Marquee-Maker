@@ -19,6 +19,7 @@
     box-shadow: 1px 0px 5px #33373e;
     border-bottom: 1px solid #03469b;
     .logo {
+      float: left;
       font-size: 18px;
       margin: 5px 25px 0 25px;
       font-family: 'Anton', sans-serif;
@@ -31,13 +32,14 @@
     }// end logo
   }// end header
   .twitter-login {
+    width: 100%;
     font-size: 12px;
     font-weight: 400;
     padding: 10px 25px;
-    border-left: 1px solid #f1bf6a;
     display: inline-block;
     cursor: pointer;
     .logged-in {
+      display: inline-block;
       img {
         border-radius: 25%;
         height: 32px;
@@ -49,7 +51,21 @@
         vertical-align: -8px;
       }// end fa
     }// end logged-in
+    .board-nav {
+      margin: 0;
+      padding: 0;
+      float: right;
+      margin-right: 75px;
+      .save {
+        display: inline-block;
+      }//end save
+      .myboard{
+        display: inline-block;
+        margin-right: 15px;
+      }//end myboard
+    }//end board-nav
   }// end twitter login
+  
   aside {
     margin: 0 0 25px 25px;
     height: auto;
@@ -141,15 +157,6 @@
         width: 75%;
         padding: 10px;
         margin: 20px auto;
-        // .board-width {
-        //   float: left;
-        //   text-align: center;
-        //   margin-bottom: 20px;
-          // h3 {
-          //   font-size: .9em;
-          //   font-weight: normal;
-          // }// end h3
-        //}// end board-width
         h3 {
             font-size: .9em;
             font-weight: normal;
@@ -466,6 +473,25 @@
       width: 120px;
     }
   }// end chars count
+  .board-nav {
+    button {
+      -webkit-appearance: none;
+      display: inline-block;
+      margin: 20px auto;
+      padding: 8px 10px;
+      border: none;
+      font: normal 20px;
+      text-decoration: none !important;
+      line-height: normal;
+      color: #fff !important;
+      background: #00ccff;
+      cursor: pointer;
+      -moz-border-radius: 6px;
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      width: 100px;
+    }
+  }
 
 
 

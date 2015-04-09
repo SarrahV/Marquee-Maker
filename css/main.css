@@ -19,6 +19,7 @@ header {
   border-bottom: 1px solid #03469b;
 }
 header .logo {
+  float: left;
   font-size: 18px;
   margin: 5px 25px 0 25px;
   font-family: 'Anton', sans-serif;
@@ -30,12 +31,15 @@ header .logo h2 {
   font-weight: normal;
 }
 .twitter-login {
+  width: 100%;
   font-size: 12px;
   font-weight: 400;
   padding: 10px 25px;
-  border-left: 1px solid #f1bf6a;
   display: inline-block;
   cursor: pointer;
+}
+.twitter-login .logged-in {
+  display: inline-block;
 }
 .twitter-login .logged-in img {
   border-radius: 25%;
@@ -46,6 +50,19 @@ header .logo h2 {
 .twitter-login .logged-in .fa {
   font-size: 3em;
   vertical-align: -8px;
+}
+.twitter-login .board-nav {
+  margin: 0;
+  padding: 0;
+  float: right;
+  margin-right: 75px;
+}
+.twitter-login .board-nav .save {
+  display: inline-block;
+}
+.twitter-login .board-nav .myboard {
+  display: inline-block;
+  margin-right: 15px;
 }
 aside {
   margin: 0 0 25px 25px;
@@ -431,4 +448,21 @@ footer {
   -webkit-border-radius: 6px;
   border-radius: 6px;
   width: 120px;
+}
+.board-nav button {
+  -webkit-appearance: none;
+  display: inline-block;
+  margin: 20px auto;
+  padding: 8px 10px;
+  border: none;
+  font: normal 20px;
+  text-decoration: none !important;
+  line-height: normal;
+  color: #fff !important;
+  background: #00ccff;
+  cursor: pointer;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  width: 100px;
 }

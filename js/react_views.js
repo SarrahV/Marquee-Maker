@@ -4,12 +4,18 @@
 
     render: function(){
       return (
-        React.createElement("div", {className: "logged-in", onClick: signapp.logout.bind(signapp)}, 
-          React.createElement("img", {className: "profile-image", src: this.props.img, alt: ""}), 
-          " ", 
-          React.createElement("span", null, this.props.name), 
-          " ", 
-          React.createElement(views.Icon, {fa: "sign-out"})
+        React.createElement("div", null, 
+          React.createElement("div", {className: "logged-in", onClick: signapp.logout.bind(signapp)}, 
+            React.createElement("img", {className: "profile-image", src: this.props.img, alt: ""}), 
+            " ", 
+            React.createElement("span", null, this.props.name), 
+            " ", 
+            React.createElement(views.Icon, {fa: "sign-out"})
+          ), 
+          React.createElement("div", {className: "board-nav"}, 
+            React.createElement(MyBoard, null), 
+            React.createElement(SaveBoard, null)
+          )
         )
       )
     }
@@ -22,7 +28,9 @@
         React.createElement("div", {className: "not-logged-in", onClick: signapp.twitterLogin.bind(signapp)}, 
           React.createElement("span", null, "Sign In With"), 
           " ", 
-          React.createElement(views.Icon, {fa: "twitter"})
+          React.createElement(views.Icon, {fa: "twitter"}), 
+          " ", 
+          React.createElement("span", null, "to Save")
         )
       );
     }
@@ -44,20 +52,37 @@
     render: function(){
       return (
         React.createElement("div", {className: "twitter-login"}, 
+          React.createElement("div", {className: "logo"}, 
+            React.createElement("h2", null, "SignApp")
+          ), 
            this.getChild() 
         )
       );
     }
   });// end Log in
 
+  var SaveBoard = React.createBackboneClass({
+    render: function() {
+      return(
+        React.createElement("button", {className: "save"}, "Save")
+      );
+    }
+
+  });// end save board
+
+  var MyBoard = React.createBackboneClass({
+    render: function() {
+      return(
+         React.createElement("button", {className: "myboard"}, "My Boards")
+      );
+    }
+  });// end my board
+
   var Header = React.createBackboneClass({
     render: function() {
       return (
         React.createElement("div", null, 
-          React.createElement("div", {className: "logo"}, 
-            React.createElement("h2", null, "SignApp")
-          ), 
-          React.createElement(views.TwitterLogIn, {model: this.props.model})
+            React.createElement(views.TwitterLogIn, {model: this.props.model})
         )
       );
     }
