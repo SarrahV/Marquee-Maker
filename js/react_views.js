@@ -61,10 +61,35 @@
     }
   });// end Log in
 
-  var SaveBoard = React.createBackboneClass({
+  var BoardForm = React.createBackboneClass({
+
+    showForm: function() {
+
+    },
+
     render: function() {
       return(
-        React.createElement("button", {className: "save"}, "Save")
+        React.createElement("form", {className: "board-save"}, 
+           React.createElement("input", {placeholder: "Name Your Board"}), 
+           React.createElement("input", {type: "submit", value: "Submit"})
+        )
+      );
+    }
+
+  });// end board form
+
+  var SaveBoard = React.createBackboneClass({
+
+    onClick: function() {
+
+    },
+
+    render: function() {
+      return(
+        React.createElement("div", null, 
+          React.createElement(BoardForm, null), 
+          React.createElement("button", {className: "save", onClick: this.onClick}, "Save Current Board")
+        )
       );
     }
 

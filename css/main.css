@@ -57,12 +57,32 @@ header .logo h2 {
   float: right;
   margin-right: 75px;
 }
+.twitter-login .board-nav button {
+  -webkit-appearance: none;
+  display: inline-block;
+  margin: 20px auto;
+  padding: 8px 10px;
+  border: none;
+  font: normal 20px;
+  text-decoration: none !important;
+  line-height: normal;
+  color: #fff !important;
+  background: #00ccff;
+  cursor: pointer;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+}
 .twitter-login .board-nav .save {
   display: inline-block;
 }
 .twitter-login .board-nav .myboard {
   display: inline-block;
   margin-right: 15px;
+}
+.twitter-login .board-nav .board-save {
+  display: inline-block;
+  margin: 0 10px;
 }
 aside {
   margin: 0 0 25px 25px;
@@ -448,21 +468,4 @@ footer {
   -webkit-border-radius: 6px;
   border-radius: 6px;
   width: 120px;
-}
-.board-nav button {
-  -webkit-appearance: none;
-  display: inline-block;
-  margin: 20px auto;
-  padding: 8px 10px;
-  border: none;
-  font: normal 20px;
-  text-decoration: none !important;
-  line-height: normal;
-  color: #fff !important;
-  background: #00ccff;
-  cursor: pointer;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-  width: 100px;
 }

@@ -61,10 +61,35 @@
     }
   });// end Log in
 
-  var SaveBoard = React.createBackboneClass({
+  var BoardForm = React.createBackboneClass({
+
+    showForm: function() {
+
+    },
+
     render: function() {
       return(
-        <button className="save">Save</button>
+        <form className="board-save">
+           <input placeholder="Name Your Board"/>
+           <input type="submit" value="Submit"/>
+        </form>
+      );
+    }
+
+  });// end board form
+
+  var SaveBoard = React.createBackboneClass({
+
+    onClick: function() {
+
+    },
+
+    render: function() {
+      return(
+        <div>
+          <BoardForm/>
+          <button className="save" onClick={this.onClick}>Save Current Board</button>
+        </div>
       );
     }
 
