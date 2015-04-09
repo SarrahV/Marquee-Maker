@@ -305,9 +305,6 @@ footer {
 .style h3 {
   font-size: .5em;
 }
-.style .selected {
-  border: 1px solid red;
-}
 .style .standard {
   text-align: center;
   display: inline-block;

@@ -1,6 +1,6 @@
 (function(views){
 
-  views.TwitterLoggedIn = React.createClass({
+  var TwitterLoggedIn = React.createClass({
 
     render: function(){
       return (
@@ -15,7 +15,7 @@
     }
   }); //end logged in
 
-   views.TwitterNotLoggedIn = React.createClass({
+   var TwitterNotLoggedIn = React.createClass({
 
     render: function() {
       return (
@@ -29,7 +29,7 @@
 
   });// end not logged in
 
-  views.TwitterLogIn = React.createBackboneClass({
+  var TwitterLogIn = React.createBackboneClass({
     getChild: function(){
       if(signapp.isLoggedIn()) {
         var name = this.props.model.get("name");
@@ -50,7 +50,7 @@
     }
   });// end Log in
 
-  views.Header = React.createBackboneClass({
+  var Header = React.createBackboneClass({
     render: function() {
       return (
         <div>
@@ -62,6 +62,12 @@
       );
     }
   }); //end header
+
+
+  views.TwitterLoggedIn    = TwitterLoggedIn;
+  views.TwitterNotLoggedIn = TwitterNotLoggedIn;
+  views.TwitterLogIn       = TwitterLogIn;
+  views.Header             = Header;
 
 })(signapp.views);
 
