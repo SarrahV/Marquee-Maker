@@ -63,15 +63,23 @@
 
   var BoardForm = React.createBackboneClass({
 
-    showForm: function() {
+    nameBoard: function() {
+      e.preventDefault();
+      //create a new firebase collection
+      //take models from BB collection and put them into the FB collection
+      //make the UI switch to a view of the FB collection
+
+      //once saved - save button needs to say "Auto Saving"
 
     },
 
     render: function() {
       return(
-        React.createElement("form", {className: "board-save"}, 
-           React.createElement("input", {placeholder: "Name Your Board"}), 
-           React.createElement("input", {type: "submit", value: "Submit"})
+        React.createElement("div", null, 
+          React.createElement("form", {className: "board-save"}, 
+             React.createElement("input", {placeholder: "Name Your Board"}), 
+             React.createElement("input", {type: "submit", value: "Submit"})
+          )
         )
       );
     }
@@ -80,15 +88,15 @@
 
   var SaveBoard = React.createBackboneClass({
 
-    onClick: function() {
-
+    saveBoard: function() {
+      e.preventDefault();
+      //show the board form and hide the buttons
     },
 
     render: function() {
       return(
         React.createElement("div", null, 
-          React.createElement(BoardForm, null), 
-          React.createElement("button", {className: "save", onClick: this.onClick}, "Save Current Board")
+          React.createElement("button", {className: "save", onClick: this.saveBoard}, "Save Current Board")
         )
       );
     }
@@ -96,9 +104,16 @@
   });// end save board
 
   var MyBoard = React.createBackboneClass({
+
+    viewBoards: function() {
+
+      //need to detach view of current board and show (?how am I showing each board!?) of all boards
+
+    },
+
     render: function() {
       return(
-         React.createElement("button", {className: "myboard"}, "My Boards")
+         React.createElement("button", {className: "myboard", onClick: this.viewBoards}, "My Boards")
       );
     }
   });// end my board

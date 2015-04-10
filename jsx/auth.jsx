@@ -63,16 +63,24 @@
 
   var BoardForm = React.createBackboneClass({
 
-    showForm: function() {
+    nameBoard: function() {
+      e.preventDefault();
+      //create a new firebase collection
+      //take models from BB collection and put them into the FB collection
+      //make the UI switch to a view of the FB collection
+
+      //once saved - save button needs to say "Auto Saving"
 
     },
 
     render: function() {
       return(
-        <form className="board-save">
-           <input placeholder="Name Your Board"/>
-           <input type="submit" value="Submit"/>
-        </form>
+        <div>
+          <form className="board-save">
+             <input placeholder="Name Your Board"/>
+             <input type="submit" value="Submit"/>
+          </form>
+        </div>
       );
     }
 
@@ -80,15 +88,15 @@
 
   var SaveBoard = React.createBackboneClass({
 
-    onClick: function() {
-
+    saveBoard: function() {
+      e.preventDefault();
+      //show the board form and hide the buttons
     },
 
     render: function() {
       return(
         <div>
-          <BoardForm/>
-          <button className="save" onClick={this.onClick}>Save Current Board</button>
+          <button className="save" onClick={this.saveBoard}>Save Current Board</button>
         </div>
       );
     }
@@ -96,9 +104,16 @@
   });// end save board
 
   var MyBoard = React.createBackboneClass({
+
+    viewBoards: function() {
+
+      //need to detach view of current board and show (?how am I showing each board!?) of all boards
+
+    },
+
     render: function() {
       return(
-         <button className="myboard">My Boards</button>
+         <button className="myboard" onClick={this.viewBoards}>My Boards</button>
       );
     }
   });// end my board

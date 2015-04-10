@@ -52,14 +52,14 @@ header .logo h2 {
   vertical-align: -8px;
 }
 .twitter-login .board-nav {
+  width: 20%;
   margin: 0;
   padding: 0;
   float: right;
-  margin-right: 75px;
+  margin-right: 55px;
 }
 .twitter-login .board-nav button {
   -webkit-appearance: none;
-  display: inline-block;
   margin: 20px auto;
   padding: 8px 10px;
   border: none;
@@ -77,12 +77,8 @@ header .logo h2 {
   display: inline-block;
 }
 .twitter-login .board-nav .myboard {
-  display: inline-block;
+  float: left;
   margin-right: 15px;
-}
-.twitter-login .board-nav .board-save {
-  display: inline-block;
-  margin: 0 10px;
 }
 aside {
   margin: 0 0 25px 25px;
