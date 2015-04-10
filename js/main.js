@@ -14,8 +14,9 @@ $(function(){
 
     sentences.add(data);
 
-    signView.setProps({collection: sentences});
-    inputView.setProps({collection: sentences});
+    // signView.setProps({collection: sentences});
+    // inputView.setProps({collection: sentences});
+    mainView.setProps({collection: sentences});
     signInView.setProps({collection: sentences});
   }
 

@@ -105,15 +105,16 @@
 
   var BoardList = React.createBackboneClass({
 
-    getItem: function(model, index) {
+    // getItem: function(model, index) {
         
-    },
+    // },
 
     render: function() {
       return (
         React.createElement("div", {className: "myList"}, 
           React.createElement("div", {className: "items"}, 
-             this.props.collection.map(this.getItem) 
+            "//",  this.props.collection.map(this.getItem), 
+            React.createElement("h2", null, "Lists go here")
           )
         )
       );
@@ -221,18 +222,33 @@
 
   views.Main = React.createClass({displayName: "Main",
 
+    renderBoards: function() {
+      return (
+        React.createElement("div", null, 
+          React.createElement("aside", null), 
+          React.createElement("div", {className: "main"}, 
+            React.createElement(views.BoardList, {collection: this.props.collection})
+          )
+        )
+      )
+    },
+
     renderSign: function() {
-      return React.createElement("div", null, 
-        React.createElement("aside", null, 
-          React.createElement(views.TracksInput, {collection: this.props.collection})
-        ), 
-        React.createElement("div", {className: "main"}, 
-          React.createElement(views.SignView, {collection: this.props.collection})
+      return (
+        React.createElement("div", null, 
+          React.createElement("aside", null, 
+            React.createElement(views.TracksInput, {collection: this.props.collection})
+          ), 
+          React.createElement("div", {className: "main"}, 
+            React.createElement(views.SignView, {collection: this.props.collection})
+          )
         )
       )
     },
 
     render: function() {
+      // Use state to render either the renderSign or renderBoards
+
       return this.renderSign();
     }
   });

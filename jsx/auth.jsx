@@ -105,15 +105,16 @@
 
   var BoardList = React.createBackboneClass({
 
-    getItem: function(model, index) {
+    // getItem: function(model, index) {
         
-    },
+    // },
 
     render: function() {
       return (
         <div className="myList">
           <div className="items">
-            { this.props.collection.map(this.getItem) }
+            //{ this.props.collection.map(this.getItem) }
+            <h2>Lists go here</h2>
           </div>
         </div>
       );
