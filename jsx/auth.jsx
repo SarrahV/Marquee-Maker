@@ -2,6 +2,35 @@
 
   var TwitterLoggedIn = React.createClass({
 
+    getInitialState: function() {
+      return { showBoardForm: false }
+    },
+
+    onClick: function() {
+      this.setState( { showBoardForm: true });
+      console.log("you clicked me");
+    },
+
+    getBoardNav: function() {
+      if (this.state.showBoardForm) {
+        return (
+          <div className="board-nav">
+            <BoardForm/>
+          </div>
+        );
+      }
+      else {
+        return (
+          <div className="board-nav">
+            <MyBoard/>
+            <div>
+              <button onClick={this.onClick} className="save">Save Current Board</button>
+            </div>
+          </div>
+        );
+      }
+    },
+
     render: function(){
       return (
         <div>
@@ -12,10 +41,7 @@
             {" "}
             <views.Icon fa="sign-out"/>
           </div>
-          <div className="board-nav">
-            <MyBoard/>
-            <SaveBoard/>
-          </div>
+          {this.getBoardNav()}
         </div>
       )
     }
@@ -75,8 +101,8 @@
 
     render: function() {
       return(
-        <div>
-          <form className="board-save">
+        <div className="board-save">
+          <form>
              <input placeholder="Name Your Board"/>
              <input type="submit" value="Submit"/>
           </form>
@@ -88,15 +114,10 @@
 
   var SaveBoard = React.createBackboneClass({
 
-    saveBoard: function() {
-      e.preventDefault();
-      //show the board form and hide the buttons
-    },
-
     render: function() {
       return(
         <div>
-          <button className="save" onClick={this.saveBoard}>Save Current Board</button>
+          <button className="save">Save Current Board</button>
         </div>
       );
     }
@@ -107,7 +128,7 @@
 
     viewBoards: function() {
 
-      //need to detach view of current board and show (?how am I showing each board!?) of all boards
+      //need to detach view of current board and show (?how am I showing each board!?) all boards
 
     },
 

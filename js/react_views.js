@@ -2,6 +2,35 @@
 
   var TwitterLoggedIn = React.createClass({displayName: "TwitterLoggedIn",
 
+    getInitialState: function() {
+      return { showBoardForm: false }
+    },
+
+    onClick: function() {
+      this.setState( { showBoardForm: true });
+      console.log("you clicked me");
+    },
+
+    getBoardNav: function() {
+      if (this.state.showBoardForm) {
+        return (
+          React.createElement("div", {className: "board-nav"}, 
+            React.createElement(BoardForm, null)
+          )
+        );
+      }
+      else {
+        return (
+          React.createElement("div", {className: "board-nav"}, 
+            React.createElement(MyBoard, null), 
+            React.createElement("div", null, 
+              React.createElement("button", {onClick: this.onClick, className: "save"}, "Save Current Board")
+            )
+          )
+        );
+      }
+    },
+
     render: function(){
       return (
         React.createElement("div", null, 
@@ -12,10 +41,7 @@
             " ", 
             React.createElement(views.Icon, {fa: "sign-out"})
           ), 
-          React.createElement("div", {className: "board-nav"}, 
-            React.createElement(MyBoard, null), 
-            React.createElement(SaveBoard, null)
-          )
+          this.getBoardNav()
         )
       )
     }
@@ -75,8 +101,8 @@
 
     render: function() {
       return(
-        React.createElement("div", null, 
-          React.createElement("form", {className: "board-save"}, 
+        React.createElement("div", {className: "board-save"}, 
+          React.createElement("form", null, 
              React.createElement("input", {placeholder: "Name Your Board"}), 
              React.createElement("input", {type: "submit", value: "Submit"})
           )
@@ -88,15 +114,10 @@
 
   var SaveBoard = React.createBackboneClass({
 
-    saveBoard: function() {
-      e.preventDefault();
-      //show the board form and hide the buttons
-    },
-
     render: function() {
       return(
         React.createElement("div", null, 
-          React.createElement("button", {className: "save", onClick: this.saveBoard}, "Save Current Board")
+          React.createElement("button", {className: "save"}, "Save Current Board")
         )
       );
     }
@@ -107,7 +128,7 @@
 
     viewBoards: function() {
 
-      //need to detach view of current board and show (?how am I showing each board!?) of all boards
+      //need to detach view of current board and show (?how am I showing each board!?) all boards
 
     },
 
