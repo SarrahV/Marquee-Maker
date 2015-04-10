@@ -21,11 +21,7 @@ $(function(){
 
   window.sentences = new signapp.models.Tracks([{},{},{}]);
 
-  var sign = React.createElement(signapp.views.SignView, {
-    collection: sentences
-  });
-
-  var input = React.createElement(signapp.views.TracksInput, {
+  var main = React.createElement(signapp.views.Main, {
     collection: sentences
   });
 
@@ -36,8 +32,7 @@ $(function(){
   });
 
   var signInView  = React.render(signin, document.querySelector('header'));
-  var signView    = React.render(sign, document.querySelector('.main'));
-  var inputView   = React.render(input, document.querySelector('aside'));
+  var mainView = React.render(main, document.querySelector('.wrapper'))
 
   Backbone.history.start();
 

@@ -8,7 +8,6 @@
 
     onClick: function() {
       this.setState( { showBoardForm: true });
-      console.log("you clicked me");
     },
 
     onSave: function(newBoardName) {
@@ -18,7 +17,7 @@
 
     getSaveButton: function() {
       if (this.props.board) {
-        return <div>Auto saving board: {this.props.board}</div>
+        return <div className="autoSave">Auto saving board: {this.props.board}</div>
       } else {
         return <button onClick={this.onClick} className="save">Save Current Board</button>
       }
@@ -104,6 +103,37 @@
     }
   });// end Log in
 
+  var BoardList = React.createBackboneClass({
+
+    getItem: function(model, index) {
+        
+    },
+
+    render: function() {
+      return (
+        <div className="myList">
+          <div className="items">
+            { this.props.collection.map(this.getItem) }
+          </div>
+        </div>
+      );
+    }
+
+  });// end board list
+
+  var MyBoard = React.createBackboneClass({
+
+    viewBoards: function(e) {
+      
+    },
+
+    render: function() {
+      return(
+         <button className="myboard" onClick={this.viewBoards}>My Boards</button>
+      );
+    }
+  });// end my board
+
   var BoardForm = React.createBackboneClass({
 
     nameBoard: function(e) {
@@ -140,21 +170,6 @@
 
   });// end save board
 
-  var MyBoard = React.createBackboneClass({
-
-    viewBoards: function() {
-
-      //need to detach view of current board and show (?how am I showing each board!?) all boards
-
-    },
-
-    render: function() {
-      return(
-         <button className="myboard" onClick={this.viewBoards}>My Boards</button>
-      );
-    }
-  });// end my board
-
   var Header = React.createBackboneClass({
     onSave: function(newBoardName) {
       this.props.onSave(newBoardName);
@@ -174,6 +189,7 @@
   views.TwitterNotLoggedIn = TwitterNotLoggedIn;
   views.TwitterLogIn       = TwitterLogIn;
   views.Header             = Header;
+  views.BoardList          = BoardList;
 
 })(signapp.views);
 

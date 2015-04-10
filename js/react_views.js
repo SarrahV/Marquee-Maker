@@ -8,7 +8,6 @@
 
     onClick: function() {
       this.setState( { showBoardForm: true });
-      console.log("you clicked me");
     },
 
     onSave: function(newBoardName) {
@@ -18,7 +17,7 @@
 
     getSaveButton: function() {
       if (this.props.board) {
-        return React.createElement("div", null, "Auto saving board: ", this.props.board)
+        return React.createElement("div", {className: "autoSave"}, "Auto saving board: ", this.props.board)
       } else {
         return React.createElement("button", {onClick: this.onClick, className: "save"}, "Save Current Board")
       }
@@ -104,6 +103,37 @@
     }
   });// end Log in
 
+  var BoardList = React.createBackboneClass({
+
+    getItem: function(model, index) {
+        
+    },
+
+    render: function() {
+      return (
+        React.createElement("div", {className: "myList"}, 
+          React.createElement("div", {className: "items"}, 
+             this.props.collection.map(this.getItem) 
+          )
+        )
+      );
+    }
+
+  });// end board list
+
+  var MyBoard = React.createBackboneClass({
+
+    viewBoards: function(e) {
+      
+    },
+
+    render: function() {
+      return(
+         React.createElement("button", {className: "myboard", onClick: this.viewBoards}, "My Boards")
+      );
+    }
+  });// end my board
+
   var BoardForm = React.createBackboneClass({
 
     nameBoard: function(e) {
@@ -140,21 +170,6 @@
 
   });// end save board
 
-  var MyBoard = React.createBackboneClass({
-
-    viewBoards: function() {
-
-      //need to detach view of current board and show (?how am I showing each board!?) all boards
-
-    },
-
-    render: function() {
-      return(
-         React.createElement("button", {className: "myboard", onClick: this.viewBoards}, "My Boards")
-      );
-    }
-  });// end my board
-
   var Header = React.createBackboneClass({
     onSave: function(newBoardName) {
       this.props.onSave(newBoardName);
@@ -174,6 +189,7 @@
   views.TwitterNotLoggedIn = TwitterNotLoggedIn;
   views.TwitterLogIn       = TwitterLogIn;
   views.Header             = Header;
+  views.BoardList          = BoardList;
 
 })(signapp.views);
 
@@ -200,6 +216,26 @@
 
   });
 
+})(signapp.views);
+(function(views) {
+
+  views.Main = React.createClass({displayName: "Main",
+
+    renderSign: function() {
+      return React.createElement("div", null, 
+        React.createElement("aside", null, 
+          React.createElement(views.TracksInput, {collection: this.props.collection})
+        ), 
+        React.createElement("div", {className: "main"}, 
+          React.createElement(views.SignView, {collection: this.props.collection})
+        )
+      )
+    },
+
+    render: function() {
+      return this.renderSign();
+    }
+  });
 })(signapp.views);
 (function(views){
 
