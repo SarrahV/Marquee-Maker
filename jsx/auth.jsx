@@ -11,11 +11,24 @@
       console.log("you clicked me");
     },
 
+    onSave: function(newBoardName) {
+      this.setState( { showBoardForm: false });
+      this.props.onSave(newBoardName);
+    },
+
+    getSaveButton: function() {
+      if (this.props.board) {
+        return <div>Auto saving board: {this.props.board}</div>
+      } else {
+        return <button onClick={this.onClick} className="save">Save Current Board</button>
+      }
+    },
+
     getBoardNav: function() {
       if (this.state.showBoardForm) {
         return (
           <div className="board-nav">
-            <BoardForm/>
+            <BoardForm onSave={this.onSave}/>
           </div>
         );
       }
@@ -24,7 +37,7 @@
           <div className="board-nav">
             <MyBoard/>
             <div>
-              <button onClick={this.onClick} className="save">Save Current Board</button>
+              {this.getSaveButton()}
             </div>
           </div>
         );
@@ -64,11 +77,15 @@
   });// end not logged in
 
   var TwitterLogIn = React.createBackboneClass({
+    onSave: function(newBoardName) {
+      this.props.onSave(newBoardName);
+    },
+
     getChild: function(){
       if(signapp.isLoggedIn()) {
         var name = this.props.model.get("name");
         var img = this.props.model.get("profile_image_url");
-        return <views.TwitterLoggedIn name={name} img={img}/>
+        return <views.TwitterLoggedIn board={this.props.board} onSave={this.onSave} name={name} img={img}/>
       }
       else{
         return <views.TwitterNotLoggedIn/>
@@ -89,21 +106,20 @@
 
   var BoardForm = React.createBackboneClass({
 
-    nameBoard: function() {
+    nameBoard: function(e) {
       e.preventDefault();
-      //create a new firebase collection
-      //take models from BB collection and put them into the FB collection
-      //make the UI switch to a view of the FB collection
 
-      //once saved - save button needs to say "Auto Saving"
+      var name = this.refs.boardname.getDOMNode().value;
+
+      this.props.onSave(name);
 
     },
 
     render: function() {
       return(
         <div className="board-save">
-          <form>
-             <input placeholder="Name Your Board"/>
+          <form onSubmit={this.nameBoard}>
+             <input ref="boardname" placeholder="Name Your Board"/>
              <input type="submit" value="Submit"/>
           </form>
         </div>
@@ -140,10 +156,14 @@
   });// end my board
 
   var Header = React.createBackboneClass({
+    onSave: function(newBoardName) {
+      this.props.onSave(newBoardName);
+    },
+
     render: function() {
       return (
         <div>
-            <views.TwitterLogIn model={this.props.model}/>
+            <views.TwitterLogIn board={this.props.collection.name} onSave={this.onSave} model={this.props.model}/>
         </div>
       );
     }

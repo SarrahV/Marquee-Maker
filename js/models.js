@@ -22,14 +22,19 @@
       if(!signapp.authData || !signapp.authData.uid) {
         throw new Error("I need a user!");
       }
-      var uid = encodeURIComponent(signapp.authData.uid);
-      return signapp.firebaseURL + "/" + uid + "/boards";
+      var uid = signapp.authData.uid;
+      return signapp.firebaseURL + "users/" + uid + "/boards/" + this.name;
+    },
+
+    initialize: function(data, opts) {
+      opts || (opts = {});
+      this.name = opts.name;
     }
 
   });
 
+  models.FireTracks  = FireTracks;
   models.SignTrack   = SignTrack;
   models.Tracks      = Tracks;
-  //models.FireTracks  = FireTracks;
 
 })(signapp.models);

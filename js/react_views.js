@@ -11,11 +11,24 @@
       console.log("you clicked me");
     },
 
+    onSave: function(newBoardName) {
+      this.setState( { showBoardForm: false });
+      this.props.onSave(newBoardName);
+    },
+
+    getSaveButton: function() {
+      if (this.props.board) {
+        return React.createElement("div", null, "Auto saving board: ", this.props.board)
+      } else {
+        return React.createElement("button", {onClick: this.onClick, className: "save"}, "Save Current Board")
+      }
+    },
+
     getBoardNav: function() {
       if (this.state.showBoardForm) {
         return (
           React.createElement("div", {className: "board-nav"}, 
-            React.createElement(BoardForm, null)
+            React.createElement(BoardForm, {onSave: this.onSave})
           )
         );
       }
@@ -24,7 +37,7 @@
           React.createElement("div", {className: "board-nav"}, 
             React.createElement(MyBoard, null), 
             React.createElement("div", null, 
-              React.createElement("button", {onClick: this.onClick, className: "save"}, "Save Current Board")
+              this.getSaveButton()
             )
           )
         );
@@ -64,11 +77,15 @@
   });// end not logged in
 
   var TwitterLogIn = React.createBackboneClass({
+    onSave: function(newBoardName) {
+      this.props.onSave(newBoardName);
+    },
+
     getChild: function(){
       if(signapp.isLoggedIn()) {
         var name = this.props.model.get("name");
         var img = this.props.model.get("profile_image_url");
-        return React.createElement(views.TwitterLoggedIn, {name: name, img: img})
+        return React.createElement(views.TwitterLoggedIn, {board: this.props.board, onSave: this.onSave, name: name, img: img})
       }
       else{
         return React.createElement(views.TwitterNotLoggedIn, null)
@@ -89,21 +106,20 @@
 
   var BoardForm = React.createBackboneClass({
 
-    nameBoard: function() {
+    nameBoard: function(e) {
       e.preventDefault();
-      //create a new firebase collection
-      //take models from BB collection and put them into the FB collection
-      //make the UI switch to a view of the FB collection
 
-      //once saved - save button needs to say "Auto Saving"
+      var name = this.refs.boardname.getDOMNode().value;
+
+      this.props.onSave(name);
 
     },
 
     render: function() {
       return(
         React.createElement("div", {className: "board-save"}, 
-          React.createElement("form", null, 
-             React.createElement("input", {placeholder: "Name Your Board"}), 
+          React.createElement("form", {onSubmit: this.nameBoard}, 
+             React.createElement("input", {ref: "boardname", placeholder: "Name Your Board"}), 
              React.createElement("input", {type: "submit", value: "Submit"})
           )
         )
@@ -140,10 +156,14 @@
   });// end my board
 
   var Header = React.createBackboneClass({
+    onSave: function(newBoardName) {
+      this.props.onSave(newBoardName);
+    },
+
     render: function() {
       return (
         React.createElement("div", null, 
-            React.createElement(views.TwitterLogIn, {model: this.props.model})
+            React.createElement(views.TwitterLogIn, {board: this.props.collection.name, onSave: this.onSave, model: this.props.model})
         )
       );
     }
