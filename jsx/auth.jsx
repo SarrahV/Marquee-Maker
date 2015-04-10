@@ -34,7 +34,7 @@
       else {
         return (
           <div className="board-nav">
-            <MyBoard/>
+            <MyBoard onViewBoards={this.props.onViewBoards}/>
             <div>
               {this.getSaveButton()}
             </div>
@@ -84,7 +84,7 @@
       if(signapp.isLoggedIn()) {
         var name = this.props.model.get("name");
         var img = this.props.model.get("profile_image_url");
-        return <views.TwitterLoggedIn board={this.props.board} onSave={this.onSave} name={name} img={img}/>
+        return <views.TwitterLoggedIn onViewBoards={this.props.onViewBoards} board={this.props.board} onSave={this.onSave} name={name} img={img}/>
       }
       else{
         return <views.TwitterNotLoggedIn/>
@@ -105,16 +105,21 @@
 
   var BoardList = React.createBackboneClass({
 
-    // getItem: function(model, index) {
-        
-    // },
+    showBoard: function(name) {
+      this.props.onSelect(name);
+    },
+
+    getBoard: function(name) {
+      return <li onClick={this.showBoard.bind(this, name)}>{name}</li>;
+    },
 
     render: function() {
       return (
         <div className="myList">
           <div className="items">
-            //{ this.props.collection.map(this.getItem) }
-            <h2>Lists go here</h2>
+            <ul>
+              {this.props.model.getNames().map(this.getBoard)}
+            </ul>
           </div>
         </div>
       );
@@ -125,7 +130,8 @@
   var MyBoard = React.createBackboneClass({
 
     viewBoards: function(e) {
-      
+      e.preventDefault();
+      this.props.onViewBoards();
     },
 
     render: function() {
@@ -179,7 +185,7 @@
     render: function() {
       return (
         <div>
-            <views.TwitterLogIn board={this.props.collection.name} onSave={this.onSave} model={this.props.model}/>
+            <views.TwitterLogIn onViewBoards={this.props.onViewBoards} board={this.props.collection.name} onSave={this.onSave} model={this.props.model}/>
         </div>
       );
     }

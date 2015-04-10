@@ -33,7 +33,22 @@
 
   });
 
+  var FireBoards = Backbone.Firebase.Model.extend({
+    url: function() {
+      if(!signapp.authData || !signapp.authData.uid) {
+        throw new Error("I need a user!");
+      }
+      var uid = signapp.authData.uid;
+      return signapp.firebaseURL + "users/" + uid + "/boards";
+    },
+
+    getNames: function() {
+      return _.keys(this.toJSON());
+    }
+  });
+
   models.FireTracks  = FireTracks;
+  models.FireBoards  = FireBoards;
   models.SignTrack   = SignTrack;
   models.Tracks      = Tracks;
 

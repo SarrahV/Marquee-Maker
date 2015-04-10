@@ -34,7 +34,7 @@
       else {
         return (
           React.createElement("div", {className: "board-nav"}, 
-            React.createElement(MyBoard, null), 
+            React.createElement(MyBoard, {onViewBoards: this.props.onViewBoards}), 
             React.createElement("div", null, 
               this.getSaveButton()
             )
@@ -84,7 +84,7 @@
       if(signapp.isLoggedIn()) {
         var name = this.props.model.get("name");
         var img = this.props.model.get("profile_image_url");
-        return React.createElement(views.TwitterLoggedIn, {board: this.props.board, onSave: this.onSave, name: name, img: img})
+        return React.createElement(views.TwitterLoggedIn, {onViewBoards: this.props.onViewBoards, board: this.props.board, onSave: this.onSave, name: name, img: img})
       }
       else{
         return React.createElement(views.TwitterNotLoggedIn, null)
@@ -105,16 +105,21 @@
 
   var BoardList = React.createBackboneClass({
 
-    // getItem: function(model, index) {
-        
-    // },
+    showBoard: function(name) {
+      this.props.onSelect(name);
+    },
+
+    getBoard: function(name) {
+      return React.createElement("li", {onClick: this.showBoard.bind(this, name)}, name);
+    },
 
     render: function() {
       return (
         React.createElement("div", {className: "myList"}, 
           React.createElement("div", {className: "items"}, 
-            "//",  this.props.collection.map(this.getItem), 
-            React.createElement("h2", null, "Lists go here")
+            React.createElement("ul", null, 
+              this.props.model.getNames().map(this.getBoard)
+            )
           )
         )
       );
@@ -125,7 +130,8 @@
   var MyBoard = React.createBackboneClass({
 
     viewBoards: function(e) {
-      
+      e.preventDefault();
+      this.props.onViewBoards();
     },
 
     render: function() {
@@ -179,7 +185,7 @@
     render: function() {
       return (
         React.createElement("div", null, 
-            React.createElement(views.TwitterLogIn, {board: this.props.collection.name, onSave: this.onSave, model: this.props.model})
+            React.createElement(views.TwitterLogIn, {onViewBoards: this.props.onViewBoards, board: this.props.collection.name, onSave: this.onSave, model: this.props.model})
         )
       );
     }
@@ -220,14 +226,19 @@
 })(signapp.views);
 (function(views) {
 
-  views.Main = React.createClass({displayName: "Main",
+  views.Main = React.createBackboneClass({
+    getDefaultProps: function() {
+      return {
+        showBoards: false
+      }
+    },
 
     renderBoards: function() {
       return (
         React.createElement("div", null, 
           React.createElement("aside", null), 
           React.createElement("div", {className: "main"}, 
-            React.createElement(views.BoardList, {collection: this.props.collection})
+            React.createElement(views.BoardList, {onSelect: this.props.onBoardSelect, model: this.props.boards})
           )
         )
       )
@@ -248,8 +259,11 @@
 
     render: function() {
       // Use state to render either the renderSign or renderBoards
-
-      return this.renderSign();
+      if (this.props.showBoards) {
+        return this.renderBoards();
+      } else {
+        return this.renderSign();
+      }
     }
   });
 })(signapp.views);

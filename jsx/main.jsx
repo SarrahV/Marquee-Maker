@@ -1,13 +1,18 @@
 (function(views) {
 
-  views.Main = React.createClass({
+  views.Main = React.createBackboneClass({
+    getDefaultProps: function() {
+      return {
+        showBoards: false
+      }
+    },
 
     renderBoards: function() {
       return (
         <div>
           <aside />
           <div className="main">
-            <views.BoardList collection={this.props.collection} />
+            <views.BoardList onSelect={this.props.onBoardSelect} model={this.props.boards} />
           </div>
         </div>
       )
@@ -28,8 +33,11 @@
 
     render: function() {
       // Use state to render either the renderSign or renderBoards
-
-      return this.renderSign();
+      if (this.props.showBoards) {
+        return this.renderBoards();
+      } else {
+        return this.renderSign();
+      }
     }
   });
 })(signapp.views);
