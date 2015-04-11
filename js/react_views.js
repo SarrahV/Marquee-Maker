@@ -19,7 +19,7 @@
       if (this.props.board) {
         return React.createElement("div", {className: "autoSave"}, "Auto saving board: ", this.props.board)
       } else {
-        return React.createElement("button", {onClick: this.onClick, className: "save"}, "Save Current Board")
+        return React.createElement("button", {onClick: this.onClick, className: "save"}, "Save Board", React.createElement(views.Icon, {fa: "floppy-o"}))
       }
     },
 
@@ -95,7 +95,7 @@
       return (
         React.createElement("div", {className: "twitter-login"}, 
           React.createElement("div", {className: "logo"}, 
-            React.createElement("h2", null, "SignApp")
+            React.createElement("h2", null, "MarqueeMaker")
           ), 
            this.getChild() 
         )
@@ -136,7 +136,7 @@
 
     render: function() {
       return(
-         React.createElement("button", {className: "myboard", onClick: this.viewBoards}, "My Boards")
+         React.createElement("button", {className: "myboard", onClick: this.viewBoards}, "My Boards", React.createElement(views.Icon, {fa: "list-alt"}))
       );
     }
   });// end my board
@@ -165,17 +165,17 @@
 
   });// end board form
 
-  var SaveBoard = React.createBackboneClass({
+  // var SaveBoard = React.createBackboneClass({
 
-    render: function() {
-      return(
-        React.createElement("div", null, 
-          React.createElement("button", {className: "save"}, "Save Current Board")
-        )
-      );
-    }
+  //   render: function() {
+  //     return(
+  //       <div>
+  //         <button className="save">Save Board <i class="icon-save"></i></button>
+  //       </div>
+  //     );
+  //   }
 
-  });// end save board
+  // });// end save board
 
   var Header = React.createBackboneClass({
     onSave: function(newBoardName) {

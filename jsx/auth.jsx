@@ -19,7 +19,7 @@
       if (this.props.board) {
         return <div className="autoSave">Auto saving board: {this.props.board}</div>
       } else {
-        return <button onClick={this.onClick} className="save">Save Current Board</button>
+        return <button onClick={this.onClick} className="save">Save Board<views.Icon fa="floppy-o"/></button>
       }
     },
 
@@ -95,7 +95,7 @@
       return (
         <div className="twitter-login">
           <div className="logo">
-            <h2>SignApp</h2>
+            <h2>MarqueeMaker</h2>
           </div>
           { this.getChild() }
         </div>
@@ -136,7 +136,7 @@
 
     render: function() {
       return(
-         <button className="myboard" onClick={this.viewBoards}>My Boards</button>
+         <button className="myboard" onClick={this.viewBoards}>My Boards<views.Icon fa="list-alt"/></button>
       );
     }
   });// end my board
@@ -165,17 +165,17 @@
 
   });// end board form
 
-  var SaveBoard = React.createBackboneClass({
+  // var SaveBoard = React.createBackboneClass({
 
-    render: function() {
-      return(
-        <div>
-          <button className="save">Save Current Board</button>
-        </div>
-      );
-    }
+  //   render: function() {
+  //     return(
+  //       <div>
+  //         <button className="save">Save Board <i class="icon-save"></i></button>
+  //       </div>
+  //     );
+  //   }
 
-  });// end save board
+  // });// end save board
 
   var Header = React.createBackboneClass({
     onSave: function(newBoardName) {
