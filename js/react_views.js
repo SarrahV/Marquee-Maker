@@ -416,7 +416,7 @@
 
     getInitialState: function() {
       return {
-        letterSize: "6 on 7",
+        letterSize: "4 on 5",
         style: "stand"
       }
     },
@@ -537,7 +537,7 @@
     render: function(){
       return (
         React.createElement("div", {className: "letter-height"}, 
-          React.createElement("h3", null, "Letter Height"), 
+          React.createElement("h3", null, "Choose Letter Height"), 
           React.createElement("select", {onChange: this.onChange}, 
             React.createElement("option", {selected: this.props.selected === "4 on 5", value: "4 on 5"}, "5 in Panel"), 
             React.createElement("option", {selected: this.props.selected === "6 on 7", value: "6 on 7"}, "7 in Panel"), 

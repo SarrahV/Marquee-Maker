@@ -53,7 +53,7 @@
 
     getInitialState: function() {
       return {
-        letterSize: "6 on 7",
+        letterSize: "4 on 5",
         style: "stand"
       }
     },
@@ -174,7 +174,7 @@
     render: function(){
       return (
         <div className="letter-height">
-          <h3>Letter Height</h3>
+          <h3>Choose Letter Height</h3>
           <select onChange={this.onChange}>
             <option selected={this.props.selected === "4 on 5"} value="4 on 5">5 in Panel</option>
             <option selected={this.props.selected === "6 on 7"} value="6 on 7">7 in Panel</option>
