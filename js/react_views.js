@@ -594,6 +594,15 @@
       );
     },
 
+    getCharHeader: function() {
+      if (_.values(this.state.charCounts).length) {
+        return React.createElement("h3", null, "Total Letters Needed");
+      }
+      else {
+        return false;
+      }
+    },
+
     getBuyNowButton: function() {
       if (_.values(this.state.charCounts).length) {
         return React.createElement("button", {onClick: this.buyNow}, "Buy Now!");
@@ -668,7 +677,7 @@
     render: function() {
       return (
         React.createElement("div", {className: "chars-count"}, 
-          React.createElement("h3", null, "Total Letters Needed"), 
+          this.getCharHeader(), 
           React.createElement("hr", null), 
           React.createElement("div", null, _.map(this.state.charCounts, this.getChar)), 
           this.getBuyNowButton()

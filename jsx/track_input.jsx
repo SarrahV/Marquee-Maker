@@ -231,6 +231,15 @@
       );
     },
 
+    getCharHeader: function() {
+      if (_.values(this.state.charCounts).length) {
+        return <h3>Total Letters Needed</h3>;
+      }
+      else {
+        return false;
+      }
+    },
+
     getBuyNowButton: function() {
       if (_.values(this.state.charCounts).length) {
         return <button onClick={this.buyNow}>Buy Now!</button>;
@@ -305,7 +314,7 @@
     render: function() {
       return (
         <div className="chars-count">
-          <h3>Total Letters Needed</h3>
+          {this.getCharHeader()}
           <hr/>
           <div>{_.map(this.state.charCounts, this.getChar)}</div>
           {this.getBuyNowButton()}
