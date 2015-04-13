@@ -102,7 +102,7 @@
     render: function(){
       return (
           <span className="add">
-            <a href="#" onClick={this.onAdd}>+</a>
+            <a href="#" onClick={this.onAdd}><views.Icon fa="plus-square"/></a>
           </span>
       );
     }
@@ -121,7 +121,7 @@
     render: function(){
       return (
             <span className="delete">
-              <a href="#" onClick={this.onRemove}>-</a>
+              <a href="#" onClick={this.onRemove}><views.Icon fa="minus-square"/></a>
             </span>
       );
     }

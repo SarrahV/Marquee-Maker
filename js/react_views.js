@@ -17,7 +17,7 @@
 
     getSaveButton: function() {
       if (this.props.board) {
-        return React.createElement("div", {className: "autoSave"}, "Auto saving board: ", this.props.board)
+        return React.createElement("div", {className: "autoSave"}, React.createElement(views.Icon, {fa: "spinner fa-pulse"}), "Auto-Saving: ", this.props.board)
       } else {
         return React.createElement("button", {onClick: this.onClick, className: "save"}, "Save Board", React.createElement(views.Icon, {fa: "floppy-o"}))
       }
@@ -465,7 +465,7 @@
     render: function(){
       return (
           React.createElement("span", {className: "add"}, 
-            React.createElement("a", {href: "#", onClick: this.onAdd}, "+")
+            React.createElement("a", {href: "#", onClick: this.onAdd}, React.createElement(views.Icon, {fa: "plus-square"}))
           )
       );
     }
@@ -484,7 +484,7 @@
     render: function(){
       return (
             React.createElement("span", {className: "delete"}, 
-              React.createElement("a", {href: "#", onClick: this.onRemove}, "-")
+              React.createElement("a", {href: "#", onClick: this.onRemove}, React.createElement(views.Icon, {fa: "minus-square"}))
             )
       );
     }

@@ -48,6 +48,14 @@ header .board-save input[type=submit] {
   display: inline-block;
   cursor: pointer;
 }
+header .autoSave {
+  font-size: .9em;
+  padding-top: 3px;
+}
+header .autoSave .fa {
+  margin-right: 5px;
+  color: rgba(76, 177, 224, 0.6);
+}
 .not-logged-in .fa {
   font-size: 2em;
   margin: 0 3px;
@@ -162,32 +170,20 @@ aside form .add-remove .delete {
   float: right;
 }
 aside form .add-remove span a:link {
-  background-color: #4cb1e0;
   text-decoration: none;
-  padding: 2px 15px;
-  border: 1px solid #03469b;
-  color: #fafafa;
-  font-size: 1em;
-  font-weight: bold;
-  border-radius: 3px;
-  box-shadow: inset 0px 2px 2px rgba(255, 255, 255, 0.2);
-  -webkit-box-shadow: inset 0px 2px 2px rgba(255, 255, 255, 0.2);
-  -moz-box-shadow: inset 0px 2px 2px rgba(255, 255, 255, 0.2);
+  font-size: 1.9em;
 }
 aside form .add-remove span a:visited {
   color: #fafafa;
-  outline: none;
-  border: 1px solid #03469b;
+  text-decoration: none;
 }
 aside form .add-remove span a:hover {
-  color: #fafafa;
-  outline: none;
-  border: 1px solid #abc;
+  color: rgba(76, 177, 224, 0.6);
+  text-decoration: none;
 }
 aside form .add-remove span a:active {
   color: #03469b;
-  outline: none;
-  border: 1px solid #03469b;
+  text-decoration: none;
 }
 aside form .size {
   width: 75%;
@@ -323,7 +319,7 @@ footer {
   letter-spacing: -5px;
 }
 .wrap .mod {
-  font-family: standard2;
+  font-family: modern;
 }
 .wrap .word {
   margin-left: 10px;
@@ -413,7 +409,7 @@ footer {
   margin: 0 15px;
 }
 .style .modern span {
-  font-family: standard2;
+  font-family: modern;
   font-size: 2.4em;
   color: #000;
   margin: 0;

@@ -49,6 +49,14 @@
           cursor: pointer;
         }
     }
+    .autoSave {
+        font-size: .9em;
+        padding-top: 3px;
+      .fa {
+        margin-right: 5px;
+        color: rgba(76, 177, 224, 0.6);
+      }
+    }
   }// end header
   .not-logged-in {
     .fa {
@@ -163,33 +171,20 @@
           }// end delete
           span{ 
             a:link {
-            background-color:#4cb1e0;
-            text-decoration: none;
-            padding: 2px 15px;
-            font-size:1em;
-            border: 1px solid #03469b;
-            color: #fafafa;
-            font-size: 1em;
-            font-weight: bold;
-            border-radius: 3px;
-            box-shadow: inset 0px 2px 2px rgba(255,255,255,.2);
-            -webkit-box-shadow: inset 0px 2px 2px rgba(255,255,255,.2);
-            -moz-box-shadow: inset 0px 2px 2px rgba(255,255,255,.2);
+              text-decoration: none;
+              font-size:1.9em;
             }
             a:visited {
               color: #fafafa;
-              outline: none;
-              border: 1px solid #03469b;
+              text-decoration: none;
             }
             a:hover {
-              color: #fafafa;
-              outline: none;
-              border: 1px solid #abc;
+              color: rgba(76,177,224,.60);
+              text-decoration: none;
             }
             a:active {
               color: #03469b;
-              outline: none;
-              border: 1px solid #03469b;
+              text-decoration: none;
             }
         }// end span
       }//end add-remove
@@ -338,7 +333,7 @@
       letter-spacing: -5px;
     }
     .mod {
-      font-family: standard2;
+      font-family: modern;
     }
     .word {
       margin-left: 10px;
@@ -443,7 +438,7 @@
       display: inline-block;
       margin: 0 15px;
       span {
-        font-family: standard2;
+        font-family: modern;
         font-size: 2.4em;
         color: #000;
         margin: 0;

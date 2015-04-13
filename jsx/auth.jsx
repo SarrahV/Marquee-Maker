@@ -17,7 +17,7 @@
 
     getSaveButton: function() {
       if (this.props.board) {
-        return <div className="autoSave">Auto saving board: {this.props.board}</div>
+        return <div className="autoSave"><views.Icon fa="spinner fa-pulse"/>Auto-Saving: {this.props.board}</div>
       } else {
         return <button onClick={this.onClick} className="save">Save Board<views.Icon fa="floppy-o"/></button>
       }
