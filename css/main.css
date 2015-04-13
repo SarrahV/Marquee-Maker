@@ -27,6 +27,31 @@ header .logo h2 {
   padding: 0;
   font-weight: normal;
 }
+header .board-save input {
+  width: 150px;
+  background: #ffffff;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  display: inline-block;
+}
+header .board-save input[type=submit] {
+  width: 50px;
+  background: rgba(76, 177, 224, 0.6);
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  display: inline-block;
+}
+.not-logged-in .fa {
+  font-size: 2em;
+  margin: 0 3px;
+  color: #4099FF;
+}
 .twitter-login {
   width: 100%;
   font-size: 12px;
@@ -39,7 +64,7 @@ header .logo h2 {
   display: inline-block;
 }
 .twitter-login .logged-in img {
-  border-radius: 25%;
+  border-radius: 5px;
   height: 32px;
   width: auto;
   vertical-align: middle;

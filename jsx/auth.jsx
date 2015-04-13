@@ -157,7 +157,7 @@
         <div className="board-save">
           <form onSubmit={this.nameBoard}>
              <input ref="boardname" placeholder="Name Your Board"/>
-             <input type="submit" value="Submit"/>
+             <input type="submit" className="save-it" value="Submit"/>
           </form>
         </div>
       );

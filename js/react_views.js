@@ -157,7 +157,7 @@
         React.createElement("div", {className: "board-save"}, 
           React.createElement("form", {onSubmit: this.nameBoard}, 
              React.createElement("input", {ref: "boardname", placeholder: "Name Your Board"}), 
-             React.createElement("input", {type: "submit", value: "Submit"})
+             React.createElement("input", {type: "submit", className: "save-it", value: "Submit"})
           )
         )
       );

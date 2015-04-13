@@ -6,7 +6,6 @@
     padding: 0;
     color: #f1f1f1;
     font-family: 'Oxygen', sans-serif;
-    //font-weight: bold;
   }// end body
   header{
     height: 55px;
@@ -27,7 +26,42 @@
         font-weight: normal;
       }// end h2
     }// end logo
+    .board-save {
+      input{
+        width: 150px;
+        background: rgba(255,255,255,1);
+        //border: 1px solid #03469b;
+        border: none;
+        padding: 5px;
+        border-radius: 5px;
+        color: #fff;
+        font-weight: bold;
+        display: inline-block;
+          // &:focus {
+          //   outline: none;
+          //   border: 1px solid #abc;
+          // }// end focus
+      }// end input
+      input[type=submit] {
+          width: 50px;
+          background: rgba(76,177,224,.60);
+          //border: 1px solid #03469b;
+          border: none;
+          padding: 5px;
+          border-radius: 5px;
+          color: #fff;
+          font-weight: bold;
+          display: inline-block;
+        }
+    }
   }// end header
+  .not-logged-in {
+    .fa {
+      font-size: 2em;
+      margin: 0 3px;
+      color: #4099FF;
+    }
+  }
   .twitter-login {
     width: 100%;
     font-size: 12px;
@@ -38,7 +72,7 @@
     .logged-in {
       display: inline-block;
       img {
-        border-radius: 25%;
+        border-radius: 5px;
         height: 32px;
         width: auto;
         vertical-align:  middle;
@@ -66,19 +100,17 @@
         text-align: center;
         outline: none;
         text-decoration: none;
-        &:hover {
-          background: rgba(49,126,197,0.90);
-        }
+          &:hover {
+            background: rgba(49,126,197,0.90);
+          }
       }
       .save {
         float: left;
         padding: 0 10px;
-        //width: 145px;
       }//end save
       .myboard {
         float: left;
         padding: 0 10px;
-        //width: 150px;
       }//end myboard
       .fa {
         font-size: 1em;
@@ -104,12 +136,8 @@
       width: 400px;
     }//end 480
     display: inline-block;
-    //background: rgba(49,126,197,0.90);
     background: rgba(3, 70, 155, .9);
     border-radius: 5px;
-    // -webkit-box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.3);
-    // -moz-box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.3);
-    // box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.3);
       .textfield {
         input{
           width: 75%;
@@ -480,7 +508,7 @@
     .count {
       padding-left: 5px;
     }
-     .letter{
+   .letter{
       padding-right: 5px;
       padding-left: 25px;
     }
