@@ -145,12 +145,13 @@ aside {
 }
 aside .textfield input {
   width: 75%;
+  height: 2em;
+  font-size: .8em;
   background: rgba(76, 177, 224, 0.6);
   border: 1px solid #03469b;
   padding: 5px;
   border-radius: 5px;
-  color: #03469b;
-  font-weight: bold;
+  color: #02224b;
   margin: 25px auto;
   display: block;
 }
@@ -361,16 +362,16 @@ footer {
   clear: both;
 }
 .style h3 {
-  font-size: .5em;
+  font-size: .8em;
 }
 .style .standard {
   text-align: center;
   display: inline-block;
-  margin: 25px 15px 0 15px;
+  margin: 25px 25px 0 25px;
 }
 .style .standard span {
   font-family: standard2;
-  font-size: 2.4em;
+  font-size: 3em;
   color: #000;
   margin: 0;
   background-color: rgba(255, 255, 255, 0.5);
@@ -386,11 +387,11 @@ footer {
 .style .condensed {
   text-align: center;
   display: inline-block;
-  margin: 0 15px;
+  margin: 0 25px;
 }
 .style .condensed span {
   font-family: condensed;
-  font-size: 2.4em;
+  font-size: 3em;
   color: #000;
   margin: 0;
   background-color: rgba(255, 255, 255, 0.5);
@@ -406,11 +407,11 @@ footer {
 .style .modern {
   text-align: center;
   display: inline-block;
-  margin: 0 15px;
+  margin: 0 25px;
 }
 .style .modern span {
   font-family: modern;
-  font-size: 2.4em;
+  font-size: 3em;
   color: #000;
   margin: 0;
   background-color: rgba(255, 255, 255, 0.5);
@@ -446,7 +447,7 @@ footer {
 .chars-count hr {
   border: 0;
   height: 0;
-  border: 1px solid rgba(3, 70, 155, 0.2);
+  border: 1px solid rgba(2, 34, 75, 0.5);
   width: 100%;
 }
 .chars-count .total-chars {
