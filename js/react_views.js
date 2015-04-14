@@ -110,7 +110,7 @@
     },
 
     getBoard: function(name) {
-      return React.createElement("li", {onClick: this.showBoard.bind(this, name)}, React.createElement("a", {href: ""}, name));
+      return React.createElement("li", {onClick: this.showBoard.bind(this, name)}, name);
     },
 
     render: function() {

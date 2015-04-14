@@ -110,7 +110,7 @@
     },
 
     getBoard: function(name) {
-      return <li onClick={this.showBoard.bind(this, name)}><a href="">{name}</a></li>;
+      return <li onClick={this.showBoard.bind(this, name)}>{name}</li>;
     },
 
     render: function() {
