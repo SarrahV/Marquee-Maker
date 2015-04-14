@@ -54,12 +54,24 @@
     position: relative;
   }// end footer
   header{
-    height: 55px;
     background-color: #03469b;
     padding-right: 45px;
     padding-bottom: 5px;
     box-shadow: 1px 0px 5px #33373e;
     border-bottom: 1px solid #03469b;
+    @media screen and (min-width: 860px) { 
+        height: 55px;
+      }//end 860
+      // @media screen and (min-width: 860px) { 
+      //   width: 100%;
+      // }//end 650
+      // @media screen and (min-width: 650px) { 
+      //   width: 100%;
+      // }//end 650
+      @media screen and (max-width: 480px) { 
+        //width: 480px;
+        height: 120px;
+      }//end 480*/
     .logo {
       float: left;
       font-size: 18px;
@@ -600,10 +612,13 @@
     list-style: none; /* Remove default numbering */
     *list-style: decimal; /* Keep using default numbering for IE6/7 */
     font-size: 1em;
-    padding: 0;
+    padding: 15px;
     margin-bottom: 4em;
-    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    text-shadow: 0 1px 0 rgba(255,255,255,.2);
     width: 400px;
+   // background: rgba(0, 0, 0, .5);
+   background: rgba(3, 70, 155, .9);
+    border-radius: 4px;
   }
    a {
       position: relative;
@@ -617,7 +632,7 @@
       transition: all .3s ease-out;   
    }
     a:hover{
-      background: rgba(76,177,224,.60);
+      background: rgba(76,177,224,.70);
    }   
 
     a:before{
@@ -627,7 +642,7 @@
       left: -2.5em;
       top: 50%;
       margin-top: -1em;
-      background: rgba(76,177,224,.60);
+      background: rgba(76,177,224,.70);
       height: 2em;
       width: 2em;
       line-height: 2em;
@@ -647,7 +662,7 @@
 
     a:hover:after{
       left: -.5em;
-      border-left-color: rgba(76,177,224,.60);            
+      border-left-color: rgba(76,177,224,.70);            
     }
 }
  
