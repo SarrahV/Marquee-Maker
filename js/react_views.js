@@ -110,14 +110,14 @@
     },
 
     getBoard: function(name) {
-      return React.createElement("li", {onClick: this.showBoard.bind(this, name)}, name);
+      return React.createElement("li", {onClick: this.showBoard.bind(this, name)}, React.createElement("a", {href: ""}, name));
     },
 
     render: function() {
       return (
         React.createElement("div", {className: "myList"}, 
           React.createElement("div", {className: "items"}, 
-            React.createElement("ul", null, 
+            React.createElement("ol", null, 
               this.props.model.getNames().map(this.getBoard)
             )
           )

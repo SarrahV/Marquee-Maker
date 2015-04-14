@@ -110,16 +110,16 @@
     },
 
     getBoard: function(name) {
-      return <li onClick={this.showBoard.bind(this, name)}>{name}</li>;
+      return <li onClick={this.showBoard.bind(this, name)}><a href="">{name}</a></li>;
     },
 
     render: function() {
       return (
         <div className="myList">
           <div className="items">
-            <ul>
+            <ol>
               {this.props.model.getNames().map(this.getBoard)}
-            </ul>
+            </ol>
           </div>
         </div>
       );
