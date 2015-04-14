@@ -596,7 +596,15 @@
 
     getBuyNowButton: function() {
       if (_.values(this.state.charCounts).length) {
-        return React.createElement("button", {onClick: this.buyNow}, "Buy Now!");
+        return (
+          React.createElement("div", null, 
+            React.createElement("button", {onClick: this.buyNow}, "Buy Letters*"), 
+            React.createElement("div", {className: "disclaimer"}, 
+              React.createElement("p", null, "*You will be redirected to the National Readerboard website to purchase" + ' ' +
+              "the selected letters. No account required.")
+            )
+          )
+        )
       }
       else {
         return false;

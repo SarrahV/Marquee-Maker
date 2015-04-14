@@ -7,6 +7,7 @@
     background-image: url(../images/mcd-gradient-dark.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
   }// end body
   .wrapper {
     min-height: 100%;
@@ -21,26 +22,28 @@
       height: 300px;
     }
     .main {
-    float:right;
-    margin: 0 auto 0 auto;
-    @media screen and (min-width: 860px) { 
-      width: ~"calc(100% - 395px)";
-    }//end 860
-    // @media screen and (min-width: 860px) { 
-    //   width: 100%;
-    // }//end 650
-    // @media screen and (min-width: 650px) { 
-    //   width: 100%;
-    // }//end 650
-    @media screen and (max-width: 650px) { 
-      //width: 480px;
-      width: 100%;
-    }//end 480*/
-  }// end main
+      float:right;
+      margin: 0 auto 0 auto;
+      @media screen and (min-width: 860px) { 
+        width: ~"calc(100% - 395px)";
+      }//end 860
+      // @media screen and (min-width: 860px) { 
+      //   width: 100%;
+      // }//end 650
+      // @media screen and (min-width: 650px) { 
+      //   width: 100%;
+      // }//end 650
+      @media screen and (max-width: 650px) { 
+        //width: 480px;
+        width: 100%;
+      }//end 480*/
+      .myList {
+        height: 600px;
+        display: block;
+        }
+    }// end main
   }
-   .mylist {
-      height: 600px;
-    }
+
   footer {
     height: 300px;
     background-color: #03469b;
@@ -48,6 +51,7 @@
     border-top: 1px solid #03469b;
     clear: both;
     z-index: 4;
+    position: relative;
   }// end footer
   header{
     height: 55px;
@@ -367,7 +371,9 @@
     }// end linear
   }// end wrap
   .pole {
-    height: 700px;
+    z-index: -2;
+    position: relative;
+    height: 1200px;
     overflow: hidden;
     width: 38px;
     margin: 0 auto;
@@ -548,13 +554,12 @@
       }
       button {
         clear: both;
-        float: left;
-        margin: 0 auto;
         -webkit-appearance: none;
         display: inline-block;
-        margin: 20px auto;
+        margin: 20px 0px 20px 35px;
         padding: 8px 10px;
         border: none;
+        font-size: 1.2em;
         font: normal 20px;
         text-decoration: none !important;
         line-height: normal;
@@ -564,7 +569,14 @@
         -moz-border-radius: 6px;
         -webkit-border-radius: 6px;
         border-radius: 5px;
-        width: 120px;
+        width: 190px;
+      }
+      .disclaimer {
+        font-size: .4em;
+        line-height: 1.5em;
+        font-weight: normal;
+        font-style: italic;
+
       }
     }// end chars count
   .stand {

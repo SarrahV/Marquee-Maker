@@ -245,7 +245,15 @@
 
     getBuyNowButton: function() {
       if (_.values(this.state.charCounts).length) {
-        return <button onClick={this.buyNow}>Buy Now!</button>;
+        return (
+          <div>
+            <button onClick={this.buyNow}>Buy Letters*</button>
+            <div className="disclaimer">
+              <p>*You will be redirected to the National Readerboard website to purchase
+              the selected letters. No account required.</p>
+            </div>
+          </div>
+        )
       }
       else {
         return false;
