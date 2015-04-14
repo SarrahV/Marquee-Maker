@@ -1,12 +1,54 @@
   body {
-    background-image: url(../images/mcd-gradient-dark.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
     margin: 0;
     padding: 0;
     color: #f1f1f1;
     font-family: 'Oxygen', sans-serif;
+    height: 100%;
+    background-image: url(../images/mcd-gradient-dark.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
   }// end body
+  .wrapper {
+    min-height: 100%;
+    height: auto !important;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -300px;
+    overflow: auto;
+    &:after {
+      content: "";
+      display: block;
+      height: 300px;
+    }
+    .main {
+    float:right;
+    margin: 0 auto 0 auto;
+    @media screen and (min-width: 860px) { 
+      width: ~"calc(100% - 395px)";
+    }//end 860
+    // @media screen and (min-width: 860px) { 
+    //   width: 100%;
+    // }//end 650
+    // @media screen and (min-width: 650px) { 
+    //   width: 100%;
+    // }//end 650
+    @media screen and (max-width: 650px) { 
+      //width: 480px;
+      width: 100%;
+    }//end 480*/
+  }// end main
+  }
+   .mylist {
+      height: 600px;
+    }
+  footer {
+    height: 300px;
+    background-color: #03469b;
+    box-shadow: 1px 0px 5px #33373e;
+    border-top: 1px solid #03469b;
+    clear: both;
+    z-index: 4;
+  }// end footer
   header{
     height: 55px;
     background-color: #03469b;
@@ -38,24 +80,24 @@
         display: inline-block;
       }// end input
       input[type=submit] {
-          width: 60px;
-          background: rgba(76,177,224,.60);
-          border: none;
-          padding: 5px 10px;
-          border-radius: 0 5px 5px 0;
-          color: #fff;
-          font-weight: bold;
-          display: inline-block;
-          cursor: pointer;
-        }
+        width: 60px;
+        background: rgba(76,177,224,.60);
+        border: none;
+        padding: 5px 10px;
+        border-radius: 0 5px 5px 0;
+        color: #fff;
+        font-weight: bold;
+        display: inline-block;
+        cursor: pointer;
+      }
     }
     .autoSave {
-        font-size: .9em;
-        padding-top: 3px;
-      .fa {
-        margin-right: 5px;
-        color: rgba(76, 177, 224, 0.6);
-      }
+      font-size: .9em;
+      padding-top: 3px;
+        .fa {
+          margin-right: 5px;
+          color: rgba(76, 177, 224, 0.6);
+        }
     }
   }// end header
   .not-logged-in {
@@ -141,6 +183,8 @@
     display: inline-block;
     background: rgba(3, 70, 155, .9);
     border-radius: 5px;
+    // z-index: -5;
+    // position: relative;
       .textfield {
         input{
           width: 75%;
@@ -236,37 +280,11 @@
       :-ms-input-placeholder {  
          color: #f1f1f1;  
       }
-
     }//end form
   }// end aside
-
-  .main {
-    float:right;
-    margin: 0 auto 0 auto;
-    @media screen and (min-width: 860px) { 
-      width: ~"calc(100% - 395px)";
-    }//end 860
-    // @media screen and (min-width: 860px) { 
-    //   width: 100%;
-    // }//end 650
-    // @media screen and (min-width: 650px) { 
-    //   width: 100%;
-    // }//end 650
-    @media screen and (max-width: 650px) { 
-      //width: 480px;
-      width: 100%;
-    }//end 480*/
-  }// end main
-
-  footer {
-    height: 50px;
-    background-color: #03469b;
-    box-shadow: 1px 0px 5px #33373e;
-    border-top: 1px solid #03469b;
-    clear: both;
-  }// end footer
-
   .wrap {
+    z-index: -1;
+    height: 100%;
     width: 100%;
     margin: 0 auto 0 auto;
     .can {
@@ -326,17 +344,6 @@
           }//end tracks
       }// end face
     }//end can 
-    .stand {
-      font-family: standard2;
-      letter-spacing: -3px;
-    }
-    .cond {
-      font-family: condensed;
-      letter-spacing: -5px;
-    }
-    .mod {
-      font-family: modern;
-    }
     .word {
       margin-left: 10px;
       margin-right: 10px;
@@ -360,9 +367,9 @@
     }// end linear
   }// end wrap
   .pole {
-    width: 38px;
-    //height: ~"calc(100% - 50px)";
     height: 700px;
+    overflow: hidden;
+    width: 38px;
     margin: 0 auto;
     -webkit-box-shadow: inset 0px 12px 1px 1px rgba(0,0,0,0.41);
     -moz-box-shadow: inset 0px 12px 1px 1px rgba(0,0,0,0.41);
@@ -398,61 +405,64 @@
     .standard  {
       text-align: center;
       display: inline-block;
-      margin: 25px 25px 0 25px;
+      margin: 25px 15px 0 15px;
       span {
         font-family: standard2;
-        font-size: 3em;
+        font-size: 4em;
         color: #000;
         margin: 0;
-        background-color: rgba(255, 255, 255, 0.50);
-        width: 20px;
-        padding: 2px;
+        background-color: #ffffff;
+        width: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         box-sizing: border-box;
         text-shadow: none;
-        -webkit-box-shadow: 1px 1px 0px 1px rgba(0,0,0,0.05);
-        -moz-box-shadow: 1px 1px 0px 1px rgba(0,0,0,0.05);
-        box-shadow: 1px 1px 0px 1px rgba(0,0,0,0.05);
-        border-radius: 2px;
+        -webkit-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+        -moz-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+        box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
       }//end standard
     }// end style
     .condensed {
       text-align: center;
       display: inline-block;
-      margin: 0 25px;
+      margin: 0 15px;
       span {
         font-family: condensed;
-        font-size: 3em;
+        font-size: 4em;
         color: #000;
         margin: 0;
-        background-color: rgba(255, 255, 255, 0.50);
-        width: 40px;
-        padding: 2px;
+        background-color: #ffffff;
+        width: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         box-sizing: border-box;
         text-shadow: none;
-        -webkit-box-shadow: 1px 1px 0px 1px rgba(0,0,0,0.05);
-        -moz-box-shadow: 1px 1px 0px 1px rgba(0,0,0,0.05);
-        box-shadow: 1px 1px 0px 1px rgba(0,0,0,0.05);
-        border-radius: 2px;
+        -webkit-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+        -moz-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+        box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
       }//end condensed
     }// end span
     .modern {
       text-align: center;
       display: inline-block;
-      margin: 0 25px;
+      margin: 0 15px;
       span {
         font-family: modern;
-        font-size: 3em;
+        font-size: 4em;
         color: #000;
         margin: 0;
-        background-color: rgba(255, 255, 255, 0.50);
-        width: 40px;
-        padding: 2px;
+        background-color: #ffffff;
+        width: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         box-sizing: border-box;
         text-shadow: none;
-        -webkit-box-shadow: 1px 1px 0px 1px rgba(0,0,0,0.05);
-        -moz-box-shadow: 1px 1px 0px 1px rgba(0,0,0,0.05);
-        box-shadow: 1px 1px 0px 1px rgba(0,0,0,0.05);
-        border-radius: 2px;
+        -webkit-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+        -moz-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+        box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
       }// end span
     }//end modern
     a:link {
@@ -480,48 +490,94 @@
       height: 0;
       border: 1px solid rgba(2, 34, 75, .5);
       width: 100%;
+      margin-bottom: 30px;
     }
-    .total-chars {
-      width: 100%;
-      background-color: rgba(255, 255, 255, 0.10);
-      color: #03469b;
-      font-weight: bold;
-      text-align: center;
-        &:nth-child(even) {
-          background-color: rgba(255, 255, 255, 0.25);
-        }
-        &:first-child {
-          border-radius: 3px 3px 0 0;
-        }
-        &:last-child {
-          border-radius: 0 0 3px 3px;
-        }
-    }
-    .count {
-      padding-left: 5px;
-    }
-   .letter{
-      padding-right: 5px;
-      padding-left: 25px;
-    }
-    button {
-      -webkit-appearance: none;
+    .letter-row{ 
       display: inline-block;
-      margin: 20px auto;
-      padding: 8px 10px;
-      border: none;
-      font: normal 20px;
-      text-decoration: none !important;
-      line-height: normal;
-      color: #fff !important;
-      background: #00ccff;
-      cursor: pointer;
-      -moz-border-radius: 6px;
-      -webkit-border-radius: 6px;
-      border-radius: 5px;
-      width: 120px;
+      margin: 0;
     }
-  }// end chars count
+      .total-chars {
+        color: #03469b;
+        font-weight: bold;
+        text-align: center;
+         span {
+            float: left;
+            font-size: 2.5em;
+            color: #000;
+            margin-right: 5px;
+            margin-bottom: 45px;
+            background-color: #ffffff;
+            padding: 5px;
+            box-sizing: border-box;
+            text-shadow: none;
+            // -webkit-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+            // -moz-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+            // box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+            -webkit-box-shadow: 16px 17px 5px -1px rgba(135,135,135,0.74);
+            -moz-box-shadow: 16px 17px 5px -1px rgba(135,135,135,0.74);
+            box-shadow: 4px 4px 1px 2px rgba(0, 0, 0, 0.35);
+            border-radius: 4px;
+          }// end span
+          .letter {
+            position: relative;
+            &:after {
+              text-align: center;
+              padding: 4px;
+              font-size: .5em;
+              font-family: sans-serif;
+              //background-color: rgba(255, 255, 255, 0.9);
+              width: 37px;
+              height: 25px;
+              border-radius: 3px;
+              content: attr(data-count);
+              position: absolute;
+              bottom: -41px;
+              right: 0px;
+              color: #fafafa;
+            }
+        }//end letter
+        .letter-back {
+            position: relative;
+            z-index: -1;
+            width: 45px;
+            height: 55px;
+            margin-left: -45px;
+            margin-top: 8px;
+            background: black;
+        }
+      }
+      button {
+        clear: both;
+        float: left;
+        margin: 0 auto;
+        -webkit-appearance: none;
+        display: inline-block;
+        margin: 20px auto;
+        padding: 8px 10px;
+        border: none;
+        font: normal 20px;
+        text-decoration: none !important;
+        line-height: normal;
+        color: #fff !important;
+        background: #00ccff;
+        cursor: pointer;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        border-radius: 5px;
+        width: 120px;
+      }
+    }// end chars count
+  .stand {
+      font-family: standard2;
+      letter-spacing: -3px;
+    }
+    .cond {
+      font-family: condensed;
+      letter-spacing: -5px;
+    }
+    .mod {
+      font-family: modern;
+    }
  
 
 

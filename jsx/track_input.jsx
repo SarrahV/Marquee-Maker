@@ -85,7 +85,7 @@
             <RemoveTrack collection={this.props.collection}/>
           </div>
           <SelectStyle selected={this.state.style} onStyle={this.setStyle} collection={this.props.collection}/>
-          <CharacterCount style={this.state.style} letterSize={this.state.letterSize} collection={this.props.collection}/>
+          <CharacterCount style={this.state.style} letterSize={this.state.letterSize} collection={this.props.collection} />
         </form>
       );
     }
@@ -223,10 +223,13 @@
     },
 
     getChar: function(count, letter) {
+      var className = "total-chars " + this.props.style;
       return (
-        <div key={letter} className="total-chars">
-          <span className="count">{count}</span>
-          <span className="letter">{letter}</span>
+        <div className="letter-row">
+          <div key={letter} className={className}>
+            <span className="letter" data-count={count}>{letter}</span>
+            <span className="letter-back"></span>
+          </div>
         </div>
       );
     },

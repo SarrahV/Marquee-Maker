@@ -165,18 +165,6 @@
 
   });// end board form
 
-  // var SaveBoard = React.createBackboneClass({
-
-  //   render: function() {
-  //     return(
-  //       <div>
-  //         <button className="save">Save Board <i class="icon-save"></i></button>
-  //       </div>
-  //     );
-  //   }
-
-  // });// end save board
-
   var Header = React.createBackboneClass({
     onSave: function(newBoardName) {
       this.props.onSave(newBoardName);
@@ -586,10 +574,13 @@
     },
 
     getChar: function(count, letter) {
+      var className = "total-chars " + this.props.style;
       return (
-        React.createElement("div", {key: letter, className: "total-chars"}, 
-          React.createElement("span", {className: "count"}, count), 
-          React.createElement("span", {className: "letter"}, letter)
+        React.createElement("div", {className: "letter-row"}, 
+          React.createElement("div", {key: letter, className: className}, 
+            React.createElement("span", {className: "letter", "data-count": count}, letter), 
+            React.createElement("span", {className: "letter-back"})
+          )
         )
       );
     },

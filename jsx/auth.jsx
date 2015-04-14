@@ -165,18 +165,6 @@
 
   });// end board form
 
-  // var SaveBoard = React.createBackboneClass({
-
-  //   render: function() {
-  //     return(
-  //       <div>
-  //         <button className="save">Save Board <i class="icon-save"></i></button>
-  //       </div>
-  //     );
-  //   }
-
-  // });// end save board
-
   var Header = React.createBackboneClass({
     onSave: function(newBoardName) {
       this.props.onSave(newBoardName);
