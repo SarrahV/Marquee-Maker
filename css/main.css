@@ -69,8 +69,8 @@ header {
 }
 header .logo {
   float: left;
-  font-size: 18px;
-  margin: -5px 25px 0 25px;
+  font-size: 1em;
+  margin: -15px 25px 0 25px;
   font-family: 'Anton', sans-serif;
   display: inline-block;
 }

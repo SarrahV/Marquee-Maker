@@ -95,7 +95,7 @@
       return (
         React.createElement("div", {className: "twitter-login"}, 
           React.createElement("div", {className: "logo"}, 
-            React.createElement("h2", null, "MarqueeMaker")
+            React.createElement("img", {src: "images/marqueemakerlogo.svg", alt: "Marquee Maker"})
           ), 
            this.getChild() 
         )

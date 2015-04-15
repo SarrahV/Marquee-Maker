@@ -95,7 +95,7 @@
       return (
         <div className="twitter-login">
           <div className="logo">
-            <h2>MarqueeMaker</h2>
+            <img src="images/marqueemakerlogo.svg" alt="Marquee Maker"/>
           </div>
           { this.getChild() }
         </div>
