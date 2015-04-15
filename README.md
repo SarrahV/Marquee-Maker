@@ -11,7 +11,7 @@ Changing a sign message can take up so much time that many businesses don't both
 
 The app allows users to create and customize a message for their marquee sign.
 
-**Features Include:**
+**Features Include:**  
 Sign in via Twitter  
 Choose letter size  
 Choose letter style  
