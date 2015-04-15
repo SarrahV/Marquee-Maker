@@ -48,6 +48,7 @@ footer {
   clear: both;
   z-index: 4;
   position: relative;
+  width: 100%;
 }
 header {
   background-color: #03469b;
@@ -621,4 +622,33 @@ aside form :-ms-input-placeholder {
 .items li:hover:after {
   left: -0.5em;
   border-left-color: rgba(76, 177, 224, 0.7);
+}
+.foot-wrap {
+  width: 1200px;
+  margin: 0 auto;
+}
+.rb-basics {
+  float: left;
+  width: 280px;
+  height: 250px;
+  margin: 25px 5px 25px 5px;
+  font-size: .9em;
+}
+.rb-basics h2 {
+  font-size: 1.5em;
+}
+.rb-basics h3 {
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  color: #1ab7ea;
+}
+.rb-basics p {
+  font-weight: 300;
+  line-height: 1.7em;
+}
+.push {
+  padding-top: 69px;
+  padding: 63px 10px 0px 10px;
+  box-sizing: border-box;
 }
