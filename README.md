@@ -1,6 +1,6 @@
 # MarqueeMaker - Final App
 
-This is my final app, developed over two and a half weeks.
+This is my final app, developed over three weeks.
 
 Marquee (readerboard) signs are everywhere. They are the number one marketing tool 
 any business has. It communicates with potential customer at the absolute best possible time, 
