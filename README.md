@@ -12,10 +12,10 @@ Changing a sign message can take up so much time that many businesses don't both
 The app allows users to create and customize a message for their marquee sign.
 
 **Features Include:**
-1.Sign in via Twitter
-2.Choose letter size
-3.Choose letter style
-4.Customize the placement of your message
-5.Save and share multiple boards
-6.Purchase letters 
+..*Sign in via Twitter
+..*Choose letter size
+..*Choose letter style
+..*Customize the placement of your message
+..*Save and share multiple boards
+..*Purchase letters 
 
