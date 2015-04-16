@@ -43,7 +43,11 @@
     },
 
     getNames: function() {
-      return _.keys(this.toJSON());
+      var names = _.reject(this.keys(), function(k){
+        return k === "id";
+      });
+      console.log("names", names);
+      return names;
     }
   });
 

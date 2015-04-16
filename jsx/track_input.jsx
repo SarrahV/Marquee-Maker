@@ -11,7 +11,7 @@
 
     getInitialState: function() {
       return {
-        sentence: ""
+        sentence: this.props.model.get("sentence")
       };
     },
 
@@ -200,7 +200,7 @@
 
     getInitialState: function() {
       return {
-        charCounts: {}
+        charCounts: this.getCharCount()
       }
     },
 
