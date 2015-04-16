@@ -513,58 +513,8 @@
     }
     .letter-row{ 
       display: inline-block;
-      margin: 0;
+      margin: 0 25px 0 0;
     }
-      .total-chars {
-        color: #03469b;
-        font-weight: bold;
-        text-align: center;
-         span {
-            float: left;
-            font-size: 2.5em;
-            color: #000;
-            margin-right: 5px;
-            margin-bottom: 45px;
-            background-color: #ffffff;
-            padding: 5px;
-            box-sizing: border-box;
-            text-shadow: none;
-            // -webkit-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
-            // -moz-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
-            // box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
-            -webkit-box-shadow: 16px 17px 5px -1px rgba(135,135,135,0.74);
-            -moz-box-shadow: 16px 17px 5px -1px rgba(135,135,135,0.74);
-            box-shadow: 4px 4px 1px 2px rgba(0, 0, 0, 0.35);
-            border-radius: 4px;
-          }// end span
-          .letter {
-            position: relative;
-            &:after {
-              text-align: center;
-              padding: 4px;
-              font-size: .5em;
-              font-family: sans-serif;
-              //background-color: rgba(255, 255, 255, 0.9);
-              width: 37px;
-              height: 25px;
-              border-radius: 3px;
-              content: attr(data-count);
-              position: absolute;
-              bottom: -41px;
-              right: 0px;
-              color: #fafafa;
-            }
-        }//end letter
-        .letter-back {
-            position: relative;
-            z-index: -1;
-            width: 45px;
-            height: 55px;
-            margin-left: -45px;
-            margin-top: 8px;
-            background: black;
-        }
-      }
       button {
         clear: both;
         -webkit-appearance: none;
@@ -589,9 +539,51 @@
         line-height: 1.5em;
         font-weight: normal;
         font-style: italic;
-
       }
     }// end chars count
+
+.myMixin() {
+  width: 50px;
+  height: 80px;
+  line-height: 80px;
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid #ddd;
+  display: inline-block;
+  text-align: center;
+  font-size: 60px;
+  color: #000000;
+  border-radius: 3px;
+}
+.card {
+  .myMixin();
+  position: relative;
+  z-index: 1;
+  &:after {
+    content: attr(data-letter);
+    .myMixin();
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    z-index: -1;
+    color: #000;
+    padding-right: 5px;
+  }
+  &:before {
+    .myMixin();
+    content: "";
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    z-index: -1;
+  }
+}
+.counts {
+  margin: 5px 0 15px 0;
+  font-size: .9em;
+  font-weight: 400;
+  font-family: 'Oxygen', sans-serif;
+  letter-spacing: normal;
+}
   .stand {
       font-family: standard2;
       letter-spacing: -3px;

@@ -578,8 +578,8 @@
       return (
         React.createElement("div", {className: "letter-row"}, 
           React.createElement("div", {key: letter, className: className}, 
-            React.createElement("span", {className: "letter", "data-count": count}, letter), 
-            React.createElement("span", {className: "letter-back"})
+            React.createElement("span", {className: "card", "data-letter": letter, "data-count": count}), 
+            React.createElement("div", {className: "counts"}, count, " Total")
           )
         )
       );

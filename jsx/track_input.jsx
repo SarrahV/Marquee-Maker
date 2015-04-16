@@ -227,8 +227,8 @@
       return (
         <div className="letter-row">
           <div key={letter} className={className}>
-            <span className="letter" data-count={count}>{letter}</span>
-            <span className="letter-back"></span>
+            <span className="card" data-letter={letter} data-count={count}></span>
+            <div className="counts">{count} Total</div>
           </div>
         </div>
       );
